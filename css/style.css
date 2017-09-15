@@ -1,0 +1,150 @@
+.topbar{
+	background-color: #1e1e1e;
+	height: 4em;
+	padding-top: 0.5em;
+}
+
+.icon{
+	margin-right: 0.5em;
+}
+
+.logo{
+	margin-left: 1em;
+}
+.active div{
+	background-color: #5c1111!important;
+	color: white!important;
+}
+.link{
+	text-decoration: none!important;
+}
+
+.link div{
+	margin-left: -5em;
+	padding-top: 1.2em;
+	padding-bottom: 1.2em;
+	padding-left: 2em;
+	padding-right: 2em;
+	color: gray;
+}
+
+.link:hover div{
+	background-color: #741616;
+	text-decoration: none!important;
+	color: white;
+}
+
+.topblock{
+	display: inline-block;
+	margin-right: 4.7em;
+}
+
+.topblockN{
+	display: inline-block;
+	margin-right: 3.7em;
+}
+
+.topfirst{
+	margin-left: 6em;
+}
+
+.topblocks{
+	margin-top: -0.4em;
+}
+
+.logout{
+	margin-top: -3.2em;
+}
+
+.linkout{
+	text-decoration: none!important;
+}
+
+.linkout div{
+	margin-left: -5em;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	padding-left: 1.5em;
+	padding-right: 1.5em;
+	color: white;
+	background-color: #e28234;
+	border-radius: 1em;
+}
+
+.linkout:hover div{
+	background-color: #b06528;
+	text-decoration: none!important;
+	color: white;
+}
+
+
+
+
+
+/****************************CARS****************************/
+#carthumb{
+	width: 400px;
+	border-radius: 1em;
+	margin-right: 1em;
+}
+
+.dalink div{
+	display: inline-block;
+}
+
+.cargallery{
+	margin-top: 5em;
+}
+
+
+
+
+
+
+/************************************************************/
+.payblock{
+	display: inline-block;
+	margin-left: 3em;
+}
+
+.payblock a{
+	text-decoration: none;
+	color: white;
+	font-size: 1.5em;
+}
+
+.full:hover{
+	transition: 0.5s;
+	background-color: #006a35;
+	text-decoration: none!important;
+	color: white;
+}
+
+.full{
+	background-color: #00b159;
+	padding: 1em 2em;
+	border-radius: 1em;
+}	
+
+.down:hover{
+	transition: 0.5s;
+	background-color: #aa5325;
+	text-decoration: none!important;
+	color: white;
+}
+
+.down{
+	background-color: #f37735;
+	padding: 1em 2em;
+	border-radius: 1em;	
+}
+
+.orderheader{
+	width: 20em;
+	padding: 1em;
+
+}
+
+.ordertable td{
+	padding: 0.5em;
+}
