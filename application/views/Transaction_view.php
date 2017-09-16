@@ -18,8 +18,10 @@
                     		<?php
                     		foreach($trans as $r) { 
                     		echo"<tr>
-                    		<td> $r->Order_ID</td>
-                    		<td> $r->Car</td>
+                    		<td> $r->Order_ID</td>";?>
+                    		<td><a href="<?php echo base_url("index.php/Cardetails_controller/index/".$r->unit_id);?>">
+							<?php echo"
+							$r->variant $r->name</a></td>
                     		<td> $r->OrderDate</td>
                             </tr>";
                                 }
