@@ -34,6 +34,8 @@
                     		?>
                  		</tbody>
                     </table>
+					<a href="<?php echo base_url("index.php/Newtransaction_controller/");?>"><button class='btn btn-success'>Add new transaction</button></a>
+                            
             </center>
          </div>
 	   </body>
