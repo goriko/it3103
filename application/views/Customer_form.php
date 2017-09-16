@@ -27,7 +27,7 @@
                     		<td> $r->Address </td>
                     		<td> $r->ContactNumber </td>
                             <td> <button class='btn btn-success'>Edit</button>";?>
-                            <a href="<?php echo base_url("index.php/Transaction_controller/index/id/".$r->CustomerID);?>"><button class='btn btn-warning'>Transaction</td></a>
+                            <a href="<?php echo base_url("index.php/Transaction_controller/index/".$r->CustomerID);?>"><button class='btn btn-warning'>Transaction</td></a>
                             <?php
                             echo "</tr>";
                                 }

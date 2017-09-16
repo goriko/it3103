@@ -6,7 +6,7 @@
 			
 		}
 		Public function index(){
-			$data_id = $this->uri->segment(4);
+			$data_id = $this->uri->segment(3);
 			$data['trans'] = $this->Transaction_model->get_orders($data_id);
 			$this->load->view('Transaction_view', $data);
 		}
