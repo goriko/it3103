@@ -37,7 +37,7 @@ public function user_login_process() {
 		if(isset($this->session->userdata['logged_in'])){
 			$this->load->view('customer');
 		}else{
-			$this->load->view('login_form');
+			$this->load->view('Login_form');
 		}
 	} else {
 		$data = array(

@@ -7,7 +7,7 @@
 	?>
 	<head>
 		<title>LOGIN</title>
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/style.css">
+		
 	</head>
 	<body>
 		<?php
@@ -39,7 +39,7 @@
 				<label>Password :</label>
 				<input type="password" name="password" id="password" placeholder="**********"/><br/><br />
 				<input type="submit" value=" Login " name="submit"/><br />
-				<a href="<?php echo base_url() ?>index.php/Register_controller/Register">To SignUp Click Here</a>
+				<a href="<?php echo base_url() ?>index.php/Register_controller">To SignUp Click Here</a>
 				<?php echo form_close(); ?>
 			</div>
 		</div>
