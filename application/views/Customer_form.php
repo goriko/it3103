@@ -35,7 +35,7 @@
                  		</tbody>
                     </table>
 					<a href="<?php echo base_url("index.php/Newtransaction_controller/");?>"><button class='btn btn-success'>Add new transaction</button></a>
-                    <a href="<?php echo base_url("index.php/Cardetails_controller/");?>"><button class='btn btn-success'>Add carr</button></a>
+                    <a href="<?php echo base_url("index.php/Cardetails_controller/");?>"><button class='btn btn-success'>testing rani sa carmodule kay wala patay navbar hahaha</button></a>
             </center>
          </div>
 	   </body>
