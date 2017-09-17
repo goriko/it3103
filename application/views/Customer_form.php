@@ -35,7 +35,7 @@
                  		</tbody>
                     </table>
 					<a href="<?php echo base_url("index.php/Newtransaction_controller/");?>"><button class='btn btn-success'>Add new transaction</button></a>
-                            
+                    <a href="<?php echo base_url("index.php/Cardetails_controller/");?>"><button class='btn btn-success'>Add carr</button></a>
             </center>
          </div>
 	   </body>
