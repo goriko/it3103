@@ -30,6 +30,7 @@ $this->load->view('login_form');
 
 public function user_login_process() {
 
+
 	$this->form_validation->set_rules('username', 'Username', 'required');
 	$this->form_validation->set_rules('password', 'Password', 'required');
 
@@ -47,17 +48,19 @@ public function user_login_process() {
 		$result = $this->Login_DAO->login($data);
 		if ($result == TRUE) {
 			$username = $this->input->post('username');
-			$result = $this->Login_DAO->read_user_information($username);
+			$Userresult = $this->Login_DAO->read_user_information($username);
 			if ($result != false) {
 				$session_data = array(
-				'username' => $result[0]->Username,
-				'email' => $result[0]->Password,
+				'id' => $Userresult[0]->UserID,
+				'username' => $Userresult[0]->Username,
+				'email' => $Userresult[0]->Password,
 				);
 // Add user data in session
 				$this->session->set_userdata('logged_in', $session_data);
-				$query = $this->db->get("customers");
-				$Customerdata['customers'] = $query->result();
-				$this->load->view('Customer_Form',$Customerdata);
+				$this->load->model('Customer_model');
+				$CustomerData['customers']= $this->Customer_model->GetCustomers();
+				$this->load->view('Customer_form',$CustomerData);
+				
 			}
 		} else {
 			$data = array(

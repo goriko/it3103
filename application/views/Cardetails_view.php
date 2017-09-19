@@ -21,6 +21,8 @@
                             <th>Max capacity</th>
                             <th>Stock</th>
                             <th>Downpayment</th>
+                            <th></th>
+                            <th></th>
                         </thead>
                     	<tbody>
                     		<?php
@@ -29,7 +31,7 @@
 										<td>$c->name</td>
 										<td>$c->variant</td>
 										<td>$c->transmission</td>
-										<td>$c->price</td>
+										<td>$ $c->price</td>
 										<td>$c->horse_power</td>
 										<td>$c->fuel</td>
 										<td>$c->displacement</td>
@@ -37,12 +39,17 @@
 										<td>$c->engine_spec</td>
 										<td>$c->max_capacity</td>
 										<td>$c->stock</td>
-										<td>$c->downpayment</td>
+										<td>$ $c->downpayment</td>
+                                        <td><a href='";
+                                        echo base_url("index.php/Newtransaction_controller/index/".$c->unit_id);
+                                        echo "'><button class='btn btn-success'>Order</button></td>
+                                        <td><button class='btn btn-success'>Add Stock</button></td>
 									</tr>";
 							}
 						?>
                     	</table>
             </center>
+            <button class="btn btn-success">Add New Car</button>
          </div>
 	   </body>
     </head>

@@ -9,6 +9,7 @@
 			<h1>New Transaction</h1>
 				<h6>Choose customer</h6>
 				<select>
+					<option value='0' selected disabled="" >Select Customer</option>
 				<?php
 					foreach($customer as $c){
 						echo "<option value='$c->CustomerID'>$c->Name</option>";
@@ -16,6 +17,25 @@
 				?>
 				</select>
             </center>
+         </div>
+         <div>
+         	<form method="POST" action="" autocomplete="off">
+         		<label>Full Name</label>
+                <input type="text" name="name" required="required" placeholder="Name" class="form-control">
+                <br>
+                <label>Civil Status</label>
+                <input type="text" name="civil_status" required="required" placeholder="Civil Status" class="form-control">
+            	<br>
+            	<label>Address</label>
+                <input type="text" name="address" required="required" placeholder="Address" class="form-control">
+                <br>
+                <label>Contact Number</label>
+                <input type="number" name="contact_nu" required="required" placeholder="Contact Number" class="form-control">
+                <br>
+
+            	<br>
+                <span><button type="submit" class="btn btn-success">Proceed</button></span>
+               </form>
          </div>
 	   </body>
     </head>

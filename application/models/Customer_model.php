@@ -3,9 +3,21 @@
 
 		
 		Public function index(){
-			$query = $this->db->get("customers");
-			$data['records'] = $query->result();
+			
+			
 			
 		}
-	}
+		public function Getcustomers(){
+			$id = $this->session->userdata['logged_in']['id'];
+			var_dump($id);
+			$condition = "emp =" . "'" . $id. "'";
+			$this->db->select('*');
+			$this->db->from('customers');
+			$this->db->where($condition);
+			$query = $this->db->get();
+			$data = $query->result();
+			return $data;
+			}
+		}
+	
 ?>
