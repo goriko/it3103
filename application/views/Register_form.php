@@ -7,15 +7,20 @@
 	?>
 	<head>
 		<title>Registration Form</title>
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/style.css">
+		<link rel="stylesheet" href="<?php echo base_url("css/bootstrap.min.css")?>">
+		<link rel="stylesheet" href="<?php echo base_url("css/login.css")?>">
 	</head>
-	<body>
-		<div id="main">
-			<div id="login">
-				<h2>Registration Form</h2>
-				<hr/>
-				<?php
-				echo "<div class='error_msg'>";
+	<body background="<?php echo base_url("img/background1.jpg")?>">
+		<div class="wrapper">
+      <div class="row">
+          <div class="col-md-offset-4">
+              <img src="<?php echo base_url("img/kialogin.png")?>" width= "500em" height= "300em">
+          </div>
+      </div>
+			<div class="col-md-offset-4 col-md-4">
+					<h2>Registration Form</h2>
+					<?php
+						echo "<div class='error_msg'>";
 				echo validation_errors();
 				echo "</div>";
 				echo form_open('Register_controller/Register');
@@ -46,7 +51,8 @@
 				echo form_submit('submit', 'Sign Up');
 				echo form_close();
 				?>
-				<a href="<?php echo base_url() ?>index.php/login">For Login Click Here</a>
+					<a href="<?php echo base_url() ?>index.php/login">For Login Click Here</a>
+				</div>
 			</div>
 		</div>
 	</body>
