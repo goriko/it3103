@@ -1,15 +1,24 @@
+<!DOCTYPE html>
 <html>
-<meta charset ="utf-8">
-    <link rel ="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/dataTables.min.css">
-    <link rel ="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/bootstrap.min.css">
-<head>
-	<body>
-		<div class="col-md-12 ordertable">
-        	<center>
-            	<h1>Car details</h1>
-                	<table class ="customerTable">
-                    	<thead>
-                        	<th>Name</th>
+    <head> 
+    <title>Cars</title>
+    <link href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/datatables/css/dataTables.bootstrap.css')?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')?>" rel="stylesheet">
+    </head> 
+<body>
+    <div class="container">
+    <center><h1 style="font-size:20pt">Car details</h1>
+</center>
+        
+        
+        <br />
+        <br />
+        <table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                            <th>Unit_id</th>
+                            <th>Name</th>
                             <th>Variant</th>
                             <th>Transmission</th>
                             <th>Price</th>
@@ -17,41 +26,138 @@
                             <th>Fuel</th>
                             <th>Displacement</th>
                             <th>Wheel size</th>
-                            <th>Engine_Specification</th>
+                            <th>Engine Specification</th>
                             <th>Max capacity</th>
                             <th>Stock</th>
                             <th>Downpayment</th>
-                            <th></th>
-                            <th></th>
-                        </thead>
-                    	<tbody>
-                    		<?php
-							foreach($car as $c){
-								echo "<tr>
-										<td>$c->name</td>
-										<td>$c->variant</td>
-										<td>$c->transmission</td>
-										<td>$ $c->price</td>
-										<td>$c->horse_power</td>
-										<td>$c->fuel</td>
-										<td>$c->displacement</td>
-										<td>$c->wheel_size</td>
-										<td>$c->engine_spec</td>
-										<td>$c->max_capacity</td>
-										<td>$c->stock</td>
-										<td>$ $c->downpayment</td>
-                                        <td><a href='";
-                                        echo base_url("index.php/Newtransaction_controller/index/".$c->unit_id);
-                                        echo "'><button class='btn btn-success'>Order</button></td>
-                                        <td><button class='btn btn-success'>Add Stock</button></td>
-									</tr>";
-							}
-						?>
-                    	</table>
-            </center>
-           <button class="btn btn-success" onclick="add_person()">Add Car</button>
-         </div>
-         <!-- Bootstrap modal -->
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <button class="btn btn-success" onclick="add_car()"><i class="glyphicon glyphicon-plus"></i> Add Car</button>
+        <button class="btn btn-default" onclick="reload_table()"><i class="glyphicon glyphicon-refresh"></i> Reload</button>
+    </div>
+
+<script src="<?php echo base_url('assets/jquery/jquery-2.1.4.min.js')?>"></script>
+<script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js')?>"></script>
+<script src="<?php echo base_url('assets/datatables/js/jquery.dataTables.min.js')?>"></script>
+<script src="<?php echo base_url('assets/datatables/js/dataTables.bootstrap.js')?>"></script>
+<script src="<?php echo base_url('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js')?>"></script>
+
+
+<script type="text/javascript">
+
+var save_method; //for save method string
+var table;
+
+$(document).ready(function() {
+
+    //datatables
+    table = $('#table').DataTable({ 
+
+        "processing": true, //Feature control the processing indicator.
+        "serverSide": true, //Feature control DataTables' server-side processing mode.
+        "order": [], //Initial no order.
+
+        // Load data for the table's content from an Ajax source
+        "ajax": {
+            "url": "<?php echo site_url('Carcontroller/ajax_list')?>",
+            "type": "POST"
+        },
+
+        //Set column definition initialisation properties.
+        "columnDefs": [
+        { 
+            "targets": [ -1 ], //last column
+            "orderable": false, //set not orderable
+        },
+        ],
+
+    });
+
+    //set input/textarea/select event when change value, remove class error and remove text help block 
+    $("input").change(function(){
+        $(this).parent().parent().removeClass('has-error');
+        $(this).next().empty();
+    });
+    $("textarea").change(function(){
+        $(this).parent().parent().removeClass('has-error');
+        $(this).next().empty();
+    });
+    $("select").change(function(){
+        $(this).parent().parent().removeClass('has-error');
+        $(this).next().empty();
+    });
+
+});
+
+
+
+function add_car()
+{
+    save_method = 'add';
+    $('#form')[0].reset(); // reset form on modals
+    $('.form-group').removeClass('has-error'); // clear error class
+    $('.help-block').empty(); // clear error string
+    $('#modal_form').modal('show'); // show bootstrap modal
+    $('.modal-title').text('Add Car'); // Set Title to Bootstrap modal title
+}
+
+
+function save()
+{
+    $('#btnSave').text('saving...'); //change button text
+    $('#btnSave').attr('disabled',true); //set button disable 
+    var url;
+        url = "<?php echo site_url('Cardetails_controller/addcar')?>";
+    
+
+    // ajax adding data to database
+    $.ajax({
+        url : url,
+        type: "POST",
+        data: $('#form').serialize(),
+        dataType: "JSON",
+        success: function(data)
+        {
+
+            if(data.status) //if success close modal and reload ajax table
+            {
+                $('#modal_form').modal('hide');
+                reload_table();
+            }
+            else
+            {
+                for (var i = 0; i < data.inputerror.length; i++) 
+                {
+                    $('[name="'+data.inputerror[i]+'"]').parent().parent().addClass('has-error'); //select parent twice to select div form-group class and add has-error class
+                    $('[name="'+data.inputerror[i]+'"]').next().text(data.error_string[i]); //select span help-block class set text error string
+                }
+            }
+            $('#btnSave').text('save'); //change button text
+            $('#btnSave').attr('disabled',false); //set button enable 
+
+
+        },
+        error: function (jqXHR, textStatus, errorThrown)
+        {
+            alert('Error adding / update data');
+            $('#btnSave').text('save'); //change button text
+            $('#btnSave').attr('disabled',false); //set button enable 
+
+        }
+    });
+}
+function reload_table()
+{
+    table.ajax.reload(null,false); //reload datatable ajax 
+}
+
+
+</script>
+
+  <!-- Bootstrap modal -->
 <div class="modal fade" id="modal_form" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -158,74 +264,5 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <!-- End Bootstrap modal -->
-	   </body>
-    </head>
+</body>
 </html>
-<script src="<?php echo base_url(); ?>js/jquery-2.1.4.min.js"></script>
-<script src="<?php echo base_url(); ?>js/datatables.min.js"></script>
-<script src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
-<script>
-    $(document).ready(function(){
-        $(".customerTable").DataTable();
-  
-
-});
-
-
-
-function add_person()
-{
-    save_method = 'add';
-    $('#form')[0].reset(); // reset form on modals
-    $('.form-group').removeClass('has-error'); // clear error class
-    $('.help-block').empty(); // clear error string
-    $('#modal_form').modal('show'); // show bootstrap modal
-    $('.modal-title').text('Add Person'); // Set Title to Bootstrap modal title
-}
-
-
-function save()
-{
-    $('#btnSave').text('saving...'); //change button text
-    $('#btnSave').attr('disabled',true); //set button disable 
-    var url;
-        url = "<?php echo site_url('Cardetails_controller/addcar')?>";
-    
-
-    // ajax adding data to database
-    $.ajax({
-        url : url,
-        type: "POST",
-        data: $('#form').serialize(),
-        dataType: "JSON",
-        success: function(data)
-        {
-
-            if(data.status) //if success close modal and reload ajax table
-            {
-                $('#modal_form').modal('hide');
-                reload_table();
-            }
-            else
-            {
-                for (var i = 0; i < data.inputerror.length; i++) 
-                {
-                    $('[name="'+data.inputerror[i]+'"]').parent().parent().addClass('has-error'); //select parent twice to select div form-group class and add has-error class
-                    $('[name="'+data.inputerror[i]+'"]').next().text(data.error_string[i]); //select span help-block class set text error string
-                }
-            }
-            $('#btnSave').text('save'); //change button text
-            $('#btnSave').attr('disabled',false); //set button enable 
-
-
-        },
-        error: function (jqXHR, textStatus, errorThrown)
-        {
-            alert('Error adding / update data');
-            $('#btnSave').text('save'); //change button text
-            $('#btnSave').attr('disabled',false); //set button enable 
-
-        }
-    });
-}
-</script>

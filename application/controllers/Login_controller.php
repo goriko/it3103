@@ -16,6 +16,8 @@ $this->load->library('form_validation');
 // Load session library
 $this->load->library('session');
 
+$this->load->model('Customer_model');
+
 // Load database
 $this->load->model('Login_DAO');
 }
@@ -57,7 +59,7 @@ public function user_login_process() {
 				);
 // Add user data in session
 				$this->session->set_userdata('logged_in', $session_data);
-				$this->load->model('Customer_model');
+				
 				$CustomerData['customers']= $this->Customer_model->GetCustomers();
 				$this->load->view('Customer_form',$CustomerData);
 				

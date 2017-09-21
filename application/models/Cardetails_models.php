@@ -11,5 +11,10 @@
 			$data = $query->result();
 			return $data;
 		}
+		public function save($data)
+	{
+		$this->db->insert('car', $data);
+		return $this->db->insert_id();
+	}
 	}
 ?>

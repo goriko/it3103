@@ -34,7 +34,7 @@
                     		?>
                  		</tbody>
                     </table>
-                    <a href="<?php echo base_url("index.php/Cardetails_controller/");?>"><button class='btn btn-success'>View Car</button></a>
+                    <a href="<?php echo base_url("index.php/Carcontroller/");?>"><button class='btn btn-success'>View Car</button></a>
             </center>
          </div>
 	   </body>
