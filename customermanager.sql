@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 16, 2017 at 06:50 AM
+-- Generation Time: Sep 20, 2017 at 03:59 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -98,7 +98,7 @@ CREATE TABLE `customers` (
   `CivilStatus` varchar(50) NOT NULL,
   `Address` varchar(50) NOT NULL,
   `ContactNumber` int(11) NOT NULL,
-  `emp` varchar(50) NOT NULL
+  `emp` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -106,8 +106,8 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`CustomerID`, `Name`, `CivilStatus`, `Address`, `ContactNumber`, `emp`) VALUES
-(1, 'goriii', 'ye', 'qwerasdzx', 12345, 'daryl'),
-(2, 'gail', 'way ayo', 'balay sa iya mama', 999, 'daryl');
+(1, 'goriii', 'ye', 'qwerasdzx', 12345, 1),
+(2, 'gail', 'way ayo', 'balay sa iya mama', 999, 2);
 
 -- --------------------------------------------------------
 
@@ -163,7 +163,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`UserID`, `Fname`, `Lname`, `Username`, `Password`) VALUES
-(1, 'Edrian', 'Guanzon', 'gorii', '1234');
+(1, 'Edrian', 'Guanzon', 'gorii', '1234'),
+(2, 'daryl', 'rabanos', 'dar', '12345');
 
 --
 -- Indexes for dumped tables
@@ -225,7 +226,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
