@@ -26,17 +26,35 @@
 				echo form_open('Register_controller/Register');
 				echo form_label('First Name : ');
 				echo"<br/>";
-				echo form_input('fname');
+				$Fname = array(
+					'class' => 'form-control',
+					'name' => 'fname',
+					'id' => 'fname',
+					'placeholder' => 'First Name'
+					);
+				echo form_input($Fname);
 				echo"<br/>";
 				echo"<br/>";
 				echo form_label('Last Name : ');
+				$Lname = array(
+					'class' => 'form-control',
+					'name' => 'lname',
+					'id' => 'lname',
+					'placeholder' => 'Lasr Name'
+					);
 				echo"<br/>";
-				echo form_input('lname');
+				echo form_input($Lname);
 				echo"<br/>";
 				echo"<br/>";
 				echo form_label('Username : ');
 				echo"<br/>";
-				echo form_input('username');
+				$Username = array(
+					'class' => 'form-control',
+					'name' => 'username',
+					'id' => 'username',
+					'placeholder' => 'Username'
+					);
+				echo form_input($Username);
 				echo "<div class='error_msg'>";
 				if (isset($message_display)) {
 					echo $message_display;
@@ -45,10 +63,19 @@
 				echo"<br/>";
 				echo form_label('Password : ');
 				echo"<br/>";
-				echo form_password('password');
+				$Password = array(
+					'class' => 'form-control',
+					'name' => 'password',
+					'id' => 'password',
+					'placeholder' => 'Password'
+					);
+				echo form_password($Password);
 				echo"<br/>";
 				echo"<br/>";
-				echo form_submit('submit', 'Sign Up');
+				$Submit = array(
+					'class' => 'btn btn-success',
+					);
+				echo form_submit($Submit,"Sign up");
 				echo form_close();
 				?>
 					<a href="<?php echo base_url() ?>index.php/login">For Login Click Here</a>
