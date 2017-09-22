@@ -1,10 +1,5 @@
 <!DOCTYPE html>
 <html>
-	<?php
-		if(isset($this->session->userdata['logged_in'])){
-			header("location:http://localhost/login/index.php/user_authentication/user_login_process");
-		}
-	?>
 	<head>
 		<title>LOGIN</title>
 		<link rel="stylesheet" href="<?php echo base_url("css/bootstrap.min.css")?>">
@@ -36,8 +31,8 @@
 			<form>
 				<div class="form-group col-md-offset-4 col-md-4">
 				<br>
-					<input type="text" class="form-control" name="username" id="name" placeholder="Username"/><br />
-					<input type="password" class="form-control" name="password" id="password" placeholder="**********"/><br/>
+					<input type="text" class="form-control" required="required" name="username" id="name" placeholder="Username"/><br />
+					<input type="password" class="form-control" required="required" name="password" id="password" placeholder="**********"/><br/>
 					<button type="submit" value=" Login " class="btn btn-primary">Login</button><br><br>
 					<a href="<?php echo base_url('index.php/Register_controller') ?>">Click here to register</a>
 					<?php echo form_close(); ?>

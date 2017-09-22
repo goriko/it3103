@@ -1,10 +1,4 @@
 <html>
-	<?php
-
-		if (isset($this->session->userdata['logged_in'])) {
-		header("location: http://localhost/login/index.php/user_authentication/user_login_process");
-		}
-	?>
 	<head>
 		<title>Registration Form</title>
 		<link rel="stylesheet" href="<?php echo base_url("css/bootstrap.min.css")?>">
@@ -30,6 +24,7 @@
 					'class' => 'form-control',
 					'name' => 'fname',
 					'id' => 'fname',
+					'required' => 'required',
 					'placeholder' => 'First Name'
 					);
 				echo form_input($Fname);
@@ -40,6 +35,7 @@
 					'class' => 'form-control',
 					'name' => 'lname',
 					'id' => 'lname',
+					'required' => 'required',
 					'placeholder' => 'Lasr Name'
 					);
 				echo"<br/>";
@@ -52,6 +48,7 @@
 					'class' => 'form-control',
 					'name' => 'username',
 					'id' => 'username',
+					'required' => 'required',
 					'placeholder' => 'Username'
 					);
 				echo form_input($Username);
@@ -67,6 +64,7 @@
 					'class' => 'form-control',
 					'name' => 'password',
 					'id' => 'password',
+					'required' => 'required',
 					'placeholder' => 'Password'
 					);
 				echo form_password($Password);
@@ -78,7 +76,7 @@
 				echo form_submit($Submit,"Sign up");
 				echo form_close();
 				?>
-					<a href="<?php echo base_url() ?>index.php/login">For Login Click Here</a>
+				<a href="<?php echo base_url('index.php/Login_controller') ?>">Go back to login</a>
 				</div>
 			</div>
 		</div>
