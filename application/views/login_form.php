@@ -38,8 +38,8 @@
 				<br>
 					<input type="text" class="form-control" name="username" id="name" placeholder="Username"/><br />
 					<input type="password" class="form-control" name="password" id="password" placeholder="**********"/><br/>
-					<button type="submit" value=" Login " class="btn btn-primary">Login</button>
-					<a href="<?php echo base_url('index.php/Register_controller') ?>"><button class="btn btn-success">Register</button></a>
+					<button type="submit" value=" Login " class="btn btn-primary">Login</button><br><br>
+					<a href="<?php echo base_url('index.php/Register_controller') ?>">Click here to register</a>
 					<?php echo form_close(); ?>
 				</div>
 			</form>
