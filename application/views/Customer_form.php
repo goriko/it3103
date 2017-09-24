@@ -4,6 +4,7 @@
     <link rel ="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/bootstrap.min.css">
 <head>
 	<body>
+        <a href="<?php echo base_url("index.php/Logout_controller/logout");?>"><button>Logout</button></a>
 		<div class="col-md-12 ordertable">
         <!--Customer Table-->
         	<center>

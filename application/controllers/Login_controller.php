@@ -10,15 +10,10 @@ parent::__construct();
 // Load form helper library
 $this->load->helper('form');
 
-// Load form validation library
-$this->load->library('form_validation');
-
-// Load session library
-$this->load->library('session');
-
+//Load Customer Model
 $this->load->model('Customer_model');
 
-// Load database
+// Load Login Model
 $this->load->model('Login_DAO');
 }
 
