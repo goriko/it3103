@@ -1,3 +1,4 @@
+<link  rel="stylesheet" href="<?php echo base_url('assests/bootstrap/css/bootstrap.min.css')?>">
 <div class="row">
 		<div class="topbar">
      		<div class="col-md-1">
@@ -8,7 +9,7 @@
           <div class="topblock topfirst">
 	     		    <a href="<?php echo base_url('')?>" class="link active">
 	     		    <div>
-	     				      <span class="glyphicon glyphicon-user icon"></span><span>Customers</span>
+	     				      <span><i class="glyphicon glyphicon-user icon">Customers</i></span>
 	     			  </div>
 	     		    </a>
 	     		</div>
@@ -16,7 +17,7 @@
           <div class="topblock">
 	     		    <a href="<?php echo base_url("index.php/Carcontroller");?>" class="link">
 	     			  <div>
-	     				      <span class="fa fa-car icon"></span><span>Cars</span>
+	     				      <span ><i class="fa fa-car icon">Cars</i></span>
 	     			  </div>
 	     		    </a>
 	     		</div>

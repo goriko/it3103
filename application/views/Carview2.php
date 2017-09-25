@@ -45,23 +45,23 @@
       </thead>
       <tbody>
         <?php foreach($cars as $c){?>
-             <tr>
-                 <td><?php echo $c->unit_id;?></td>
-                 <td><?php echo $c->name;?></td>
-                 <td><?php echo $c->variant;?></td>
-                <td><?php echo $c->transmission;?></td>
-                <td><?php echo $c->price;?></td>
-                <td><?php echo $c->horse_power;?></td>
-                <td><?php echo $c->fuel;?></td>
-                <td><?php echo $c->displacement;?></td>
-                <td><?php echo $c->wheel_size;?></td>
-                <td><?php echo $c->engine_spec;?></td>
-                <td><?php echo $c->max_capacity;?></td>
-                <td><?php echo $c->stock;?></td>
-                <td><?php echo $c->downpayment;?></td>
-                <td><button class="btn btn-success" onclick="ads(<?php echo $c->unit_id;?>)">Order</button>
-                <button class="btn btn-success" onclick="edit_stock(<?php echo $c->unit_id;?>)">Add stock</button></td>
-              </tr>
+                <tr>
+                  <td><?php echo $c->unit_id;?></td>
+                  <td><?php echo $c->name;?></td>
+                  <td><?php echo $c->variant;?></td>
+                  <td><?php echo $c->transmission;?></td>
+                  <td><?php echo $c->price;?></td>
+                  <td><?php echo $c->horse_power;?></td>
+                  <td><?php echo $c->fuel;?></td>
+                  <td><?php echo $c->displacement;?></td>
+                  <td><?php echo $c->wheel_size;?></td>
+                  <td><?php echo $c->engine_spec;?></td>
+                  <td><?php echo $c->max_capacity;?></td>
+                  <td><?php echo $c->stock;?></td>
+                  <td><?php echo $c->downpayment;?></td>
+                  <td><button class="btn btn-success" onclick="ads(<?php echo $c->unit_id;?>)">Order</button>
+                  <button class="btn btn-success" onclick="edit_stock(<?php echo $c->unit_id;?>)">Add stock</button></td>
+                </tr>
              <?php }?>
       </tbody>
     </table>
