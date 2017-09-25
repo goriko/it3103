@@ -1,3 +1,4 @@
+<link rel ="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/bootstrap.min.css">
 <div class="row">
 		<div class="topbar">
      		<div class="col-md-1">

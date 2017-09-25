@@ -3,9 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Carmodel extends CI_Model {
 
-	var $table = 'persons';
-	var $column_order = array('unit_id','name','variant','transmission','price','horse_power','fuel','displacement','wheel_size','engine_spec','max_capacity','stock','downpayment'); //set column field database for datatable orderable
-	var $column_search = array('name','variant'); //set column field database for datatable searchable just firstname , lastname , address are searchable
+	var $table = 'car';
+	var $column_order = array('id','firstname','lastname','gender','address','dob',null); //set column field database for datatable orderable
+	var $column_search = array('firstname','lastname','address'); //set column field database for datatable searchable just firstname , lastname , address are searchable
 	var $order = array('unit_id' => 'desc'); // default order 
 
 	public function __construct()

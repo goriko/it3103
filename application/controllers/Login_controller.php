@@ -54,10 +54,7 @@ public function user_login_process() {
 				);
 // Add user data in session
 				$this->session->set_userdata('logged_in', $session_data);
-				
-				$CustomerData['customers']= $this->Customer_model->GetCustomers();
-				$this->load->view('Customer_form',$CustomerData);
-				
+				redirect('Customer_controller','refresh');
 			}
 		} else {
 			$data = array(

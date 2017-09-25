@@ -6,7 +6,7 @@ class Carcontroller extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('Carmodel','person');
+		$this->load->model('Carmodel');
 	}
 
 	public function index()
@@ -29,14 +29,11 @@ class Carcontroller extends CI_Controller {
 			$row[] = $person->transmission;
 			$row[] = $person->price;
 			$row[] = $person->horse_power;
-			$row[] = $person->fuel;
-			$row[] = $person->displacement;
-			$row[] = $person->wheel_size;
-			$row[] = $person->engine_spec;
-			$row[] = $person->max_capacity;
-			$row[] = $person->stock;
-			$row[] = $person->downpayment;
+
 			//add html for action
+			$row[] = '<a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_person('."'".$person->id."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+				  <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_person('."'".$person->id."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+		
 			$data[] = $row;
 		}
 
@@ -50,12 +47,7 @@ class Carcontroller extends CI_Controller {
 		echo json_encode($output);
 	}
 
-	public function ajax_edit($id)
-	{
-		$data = $this->person->get_by_id($id);
-		$data->dob = ($data->dob == '0000-00-00') ? '' : $data->dob; // if 0000-00-00 set tu empty for datepicker compatibility
-		echo json_encode($data);
-	}
+	
 
 	public function ajax_add()
 	{

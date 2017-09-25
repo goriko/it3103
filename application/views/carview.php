@@ -14,7 +14,7 @@
         
         <br />
         <br />
-        <table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <table id="tablers" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
                 <tr>
                             <th>Unit_id</th>
@@ -32,8 +32,6 @@
                             <th>Downpayment</th>
                 </tr>
             </thead>
-            <tbody>
-            </tbody>
         </table>
         <button class="btn btn-success" onclick="add_car()"><i class="glyphicon glyphicon-plus"></i> Add Car</button>
         <button class="btn btn-default" onclick="reload_table()"><i class="glyphicon glyphicon-refresh"></i> Reload</button>
@@ -54,13 +52,14 @@ var table;
 $(document).ready(function() {
 
     //datatables
-    table = $('#table').DataTable({ 
+    table = $('#tablers').DataTable({ 
 
         "processing": true, //Feature control the processing indicator.
         "serverSide": true, //Feature control DataTables' server-side processing mode.
         "order": [], //Initial no order.
 
         // Load data for the table's content from an Ajax source
+        
         "ajax": {
             "url": "<?php echo site_url('Carcontroller/ajax_list')?>",
             "type": "POST"

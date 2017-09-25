@@ -6,7 +6,7 @@ Public function __construct() {
 		}
 		Public function index(){
 			$this->load->helper('url');
-			$customerData['customer']= $this->Customer_model->GetCustomers();
+			$CustomerData['customers']= $this->Customer_model->GetCustomers();
 			$this->load->view('Customer_form',$CustomerData);
 		}
 	}

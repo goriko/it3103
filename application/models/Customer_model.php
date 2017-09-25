@@ -1,14 +1,15 @@
 <?php
 	Class Customer_model extends CI_Model {
 
-
+		
 		Public function index(){
-
-
-
+			
+			
+			
 		}
 		public function Getcustomers(){
 			$id = $this->session->userdata['logged_in']['id'];
+			var_dump($id);
 			$condition = "emp =" . "'" . $id. "'";
 			$this->db->select('*');
 			$this->db->from('customers');
@@ -18,5 +19,5 @@
 			return $data;
 			}
 		}
-
+	
 ?>
