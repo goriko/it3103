@@ -8,8 +8,8 @@
     <link rel ="stylesheet" href="<?php echo base_url("css/cars.css"); ?>">
 <head>
 	<body>
-    <?php include('navbar.php')?>
-    <br />
+    <?php include('navbar.php');?>
+    <br/>
 		<div class="col-md-offset-1 col-md-10 ordertable">
 		<div class="col-md-12 ordertable">
         <!--Customer Table-->
@@ -41,6 +41,7 @@
                     		?>
                  		</tbody>
                     </table>
+                    <a href="<?php echo base_url("index.php/Carcontroller2");?>"><button class='btn btn-primary'>Car Details</button></a>
             </center>
          </div>
 	   </body>
