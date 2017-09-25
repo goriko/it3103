@@ -9,7 +9,6 @@
 		}
 		public function Getcustomers(){
 			$id = $this->session->userdata['logged_in']['id'];
-			var_dump($id);
 			$condition = "emp =" . "'" . $id. "'";
 			$this->db->select('*');
 			$this->db->from('customers');
