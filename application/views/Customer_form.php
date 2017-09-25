@@ -1,10 +1,16 @@
 <html>
 <meta charset ="utf-8">
-    <link rel ="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/dataTables.min.css">
-    <link rel ="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/bootstrap.min.css">
+    <link rel ="stylesheet" href="<?php echo base_url("css/dataTables.min.css"); ?>">
+    <link rel ="stylesheet" href="<?php echo base_url("css/bootstrap.min.css"); ?>">
+    <link rel ="stylesheet" href="<?php echo base_url("css/style.css"); ?>">
+    <link rel ="stylesheet" href="<?php echo base_url("css/font-awesome.min.css"); ?>">
+    <link rel ="stylesheet" href="<?php echo base_url("css/font-awesome.css"); ?>">
+    <link rel ="stylesheet" href="<?php echo base_url("css/cars.css"); ?>">
 <head>
 	<body>
-        <a href="<?php echo base_url("index.php/Logout_controller/logout");?>"><button>Logout</button></a>
+    <?php include('navbar.php')?>
+    <br />
+		<div class="col-md-offset-1 col-md-10 ordertable">
 		<div class="col-md-12 ordertable">
         <!--Customer Table-->
         	<center>
@@ -20,7 +26,7 @@
                         </thead>
                     	<tbody>
                     		<?php
-                    		foreach($customers as $r) { 
+                    		foreach($customers as $r) {
                     		echo"<tr>
                     		<td> $r->CustomerID</td>
                     		<td> $r->Name</td>
@@ -35,7 +41,6 @@
                     		?>
                  		</tbody>
                     </table>
-                    <a href="<?php echo base_url("index.php/Carcontroller/");?>"><button class='btn btn-success'>View Car</button></a>
             </center>
          </div>
 	   </body>
