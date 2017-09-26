@@ -1,3 +1,6 @@
+<?php
+    $this->session->userdata['logged_in']['nav'] = 1;
+?>
 <html>
 <meta charset ="utf-8">
     <link rel ="stylesheet" href="<?php echo base_url("css/dataTables.min.css"); ?>">
@@ -41,7 +44,6 @@
                     		?>
                  		</tbody>
                     </table>
-                    <a href="<?php echo base_url("index.php/Carcontroller2");?>"><button class='btn btn-primary'>Car Details</button></a>
             </center>
          </div>
 	   </body>

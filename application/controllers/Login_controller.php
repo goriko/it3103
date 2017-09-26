@@ -49,12 +49,15 @@ public function user_login_process() {
 			if ($result != false) {
 				$session_data = array(
 				'id' => $Userresult[0]->UserID,
+				'fname' => $Userresult[0]->Fname,
 				'username' => $Userresult[0]->Username,
-				'email' => $Userresult[0]->Password,
+				'nav' => 1,
 				);
+
 // Add user data in session
 				$this->session->set_userdata('logged_in', $session_data);
 				redirect('Customer_controller','refresh');
+				
 			}
 		} else {
 			$data = array(

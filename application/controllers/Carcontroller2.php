@@ -3,22 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Carcontroller2 extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
-
 	 public function __construct()
 	 	{
 	 		parent::__construct();
@@ -61,13 +45,11 @@ class Carcontroller2 extends CI_Controller {
 		public function book_update()
 	{
 		$data = array(
-				'book_isbn' => $this->input->post('book_isbn'),
-				'book_title' => $this->input->post('book_title'),
-				'book_author' => $this->input->post('book_author'),
-				'book_category' => $this->input->post('book_category'),
+				'stock' => $this->input->post('stock'),
 			);
-		$this->book_model->book_update(array('book_id' => $this->input->post('book_id')), $data);
+		$this->Carmodel2->book_update(array('unit_id' => $this->input->post('unitid')), $data);
 		echo json_encode(array("status" => TRUE));
+
 	}
 
 	public function book_delete($id)

@@ -1,12 +1,20 @@
 <!DOCTYPE html>
+<?php
+$user=$this->session->userdata['logged_in']['fname'];
+$this->session->userdata['logged_in']['nav'] = 2;
+?>
 <html>
     <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>CARS</title>
-    <link href="<?php echo base_url('assests/bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
-    <link href="<?php echo base_url('assests/datatables/css/dataTables.bootstrap.css')?>" rel="stylesheet">
+    <title><?php echo $user?></title>
+    <link rel ="stylesheet" href="<?php echo base_url("css/dataTables.min.css"); ?>">
+    <link rel ="stylesheet" href="<?php echo base_url("css/bootstrap.min.css"); ?>">
+    <link rel ="stylesheet" href="<?php echo base_url("css/style.css"); ?>">
+    <link rel ="stylesheet" href="<?php echo base_url("css/font-awesome.min.css"); ?>">
+    <link rel ="stylesheet" href="<?php echo base_url("css/font-awesome.css"); ?>">
+    <link rel ="stylesheet" href="<?php echo base_url("css/cars.css"); ?>">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -15,7 +23,8 @@
     <![endif]-->
   </head>
   <body>
-
+<?php include('navbar.php');?>
+    <br/>
 
   <div class="container">
     <h1>Cars</h1>
@@ -59,7 +68,7 @@
                   <td><?php echo $c->max_capacity;?></td>
                   <td><?php echo $c->stock;?></td>
                   <td><?php echo $c->downpayment;?></td>
-                  <td><button class="btn btn-success" onclick="ads(<?php echo $c->unit_id;?>)">Order</button>
+                  <td><button class="btn btn-success" onclick="Order(<?php echo $c->unit_id;?>)">Order</button>
                   <button class="btn btn-success" onclick="edit_stock(<?php echo $c->unit_id;?>)">Add stock</button></td>
                 </tr>
              <?php }?>
@@ -102,11 +111,24 @@
         dataType: "JSON",
         success: function(data)
         {
+            $('[name="unitid"]').val(data.unit_id);
+            $('[name="model"]').val(data.name);
+            $('[name="variant"]').val(data.stock);
+            $('[name="transmission"]').val(data.transmission);
+            $('[name="price"]').val(data.price);
+            $('[name="horsepower"]').val(data.horse_power);
+            $('[name="fuel"]').val(data.fuel);
+            $('[name="displacement"]').val(data.displacement);
+            $('[name="wheelsize"]').val(data.wheel_size);
+            $('[name="enginespec"]').val(data.engine_spec);
+            $('[name="maxcapacity"]').val(data.max_capacity);
             $('[name="stock"]').val(data.stock);
+            $('[name="downpayment"]').val(data.downpayment);
 
 
 
-            $('#modal_stock').modal('show'); // show bootstrap modal when complete loaded
+
+            $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
             $('.modal-title').text('Add stock'); // Set title to Bootstrap modal title
 
         },
@@ -128,7 +150,7 @@
       }
       else
       {
-        url = "<?php echo site_url('index.php/Carcontroller2/book_update')?>";
+        url = "<?php echo site_url('/Carcontroller2/book_update')?>";
       }
 
        // ajax adding data to database
@@ -148,6 +170,11 @@
                 alert('Error adding / update data');
             }
         });
+    }
+    function Order(){
+       save_method = 'add';
+      $('#form')[0].reset(); // reset form on modals
+      $('#modal_form').modal('show');
     }
 
   </script>
@@ -179,8 +206,10 @@
             <div class="form-group">
               <label class="control-label col-md-3">Transmission</label>
               <div class="col-md-9">
-								<input name="transmission" placeholder="Transmission" class="form-control" type="text" required="required">
-
+                  <select name='transmission' class='form-control'>
+                    <option value="automatic">Automatic</option>
+                    <option value="manual">Manual</option>
+                  </select>
               </div>
             </div>
             <div class="form-group">
@@ -252,6 +281,7 @@
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
   <!-- End Bootstrap modal -->
+  
   <!-- Modal for adding stock -->
 <div class="modal fade" id="modal_stock" role="dialog">
   <div class="modal-dialog">
@@ -262,10 +292,11 @@
       </div>
       <div class="modal-body form">
         <form action="#" id="form" class="form-horizontal">
+        <input type="text" value="" name="Edit_id"/>
             <div class="form-group">
               <label class="control-label col-md-3">Stock</label>
               <div class="col-md-9">
-                <input name="stock" placeholder="stock" class="form-control" type="text" required="required">
+                <input name="stockadd" placeholder="stock" class="form-control" type="text" required="required">
 
               </div>
             </div>

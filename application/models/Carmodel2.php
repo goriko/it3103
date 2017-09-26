@@ -43,11 +43,5 @@ return $query->result();
 		return $this->db->affected_rows();
 	}
 
-	public function delete_by_id($id)
-	{
-		$this->db->where('book_id', $id);
-		$this->db->delete($this->table);
-	}
-
 
 }

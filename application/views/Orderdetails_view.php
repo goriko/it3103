@@ -1,9 +1,15 @@
 <html>
 <meta charset ="utf-8">
-    <link rel ="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/dataTables.min.css">
-    <link rel ="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/bootstrap.min.css">
+<link rel ="stylesheet" href="<?php echo base_url("css/dataTables.min.css"); ?>">
+    <link rel ="stylesheet" href="<?php echo base_url("css/bootstrap.min.css"); ?>">
+    <link rel ="stylesheet" href="<?php echo base_url("css/style.css"); ?>">
+    <link rel ="stylesheet" href="<?php echo base_url("css/font-awesome.min.css"); ?>">
+    <link rel ="stylesheet" href="<?php echo base_url("css/font-awesome.css"); ?>">
+    <link rel ="stylesheet" href="<?php echo base_url("css/cars.css"); ?>">
 <head>
 	<body>
+    <?php include('navbar.php');?>
+    <br/>
 		<div class="col-md-12 ordertable">
         <!--Order Table-->
         	<center>
