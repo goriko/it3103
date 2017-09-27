@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <?php
-$user=$this->session->userdata['logged_in']['fname'];
-$this->session->userdata['logged_in']['nav'] = 2;
+  $user=$this->session->userdata['logged_in']['fname'];
+  $this->session->userdata['logged_in']['nav'] = 2;
 ?>
 <html>
-    <head>
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,6 +15,7 @@ $this->session->userdata['logged_in']['nav'] = 2;
     <link rel ="stylesheet" href="<?php echo base_url("css/font-awesome.min.css"); ?>">
     <link rel ="stylesheet" href="<?php echo base_url("css/font-awesome.css"); ?>">
     <link rel ="stylesheet" href="<?php echo base_url("css/cars.css"); ?>">
+<<<<<<< HEAD
     <link href="<?php echo base_url('assests/datatables/css/dataTables.bootstrap.css')?>" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -22,20 +23,20 @@ $this->session->userdata['logged_in']['nav'] = 2;
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+=======
+>>>>>>> 510811456b9f693c9d3429b5f8a6f5e8c6d6fe14
   </head>
   <body>
-<?php include('navbar.php');?>
+    <?php include('navbar.php');?>
     <br/>
-
-  <div class="container">
-    <h1>Cars</h1>
-</center>
-    <br />
-    <button class="btn btn-success" onclick="add_car()"><i class="glyphicon glyphicon-plus"></i> Add Car</button>
-    <br />
-    <br />
-    <table id="table_id" class="table table-striped table-bordered" cellspacing="0" width="100%">
-      <thead>
+    <div class="col-md-offset-1 col-md-10">
+      <h1>Cars</h1>
+      <br />
+      <button class="btn btn-success" onclick="add_car()"><i class="glyphicon glyphicon-plus"></i> Add Car</button>
+      <br />
+      <br />
+      <table id="table_id" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
          <tr>
           <th>Unit ID</th>
           <th>Model</th>
@@ -55,27 +56,26 @@ $this->session->userdata['logged_in']['nav'] = 2;
       </thead>
       <tbody>
         <?php foreach($cars as $c){?>
-                <tr>
-                  <td><?php echo $c->unit_id;?></td>
-                  <td><?php echo $c->name;?></td>
-                  <td><?php echo $c->variant;?></td>
-                  <td><?php echo $c->transmission;?></td>
-                  <td><?php echo $c->price;?></td>
-                  <td><?php echo $c->horse_power;?></td>
-                  <td><?php echo $c->fuel;?></td>
-                  <td><?php echo $c->displacement;?></td>
-                  <td><?php echo $c->wheel_size;?></td>
-                  <td><?php echo $c->engine_spec;?></td>
-                  <td><?php echo $c->max_capacity;?></td>
-                  <td><?php echo $c->stock;?></td>
-                  <td><?php echo $c->downpayment;?></td>
-                  <td><button class="btn btn-success" onclick="Order(<?php echo $c->unit_id;?>)">Order</button>
-                  <button class="btn btn-success" onclick="edit_stock(<?php echo $c->unit_id;?>)">Add stock</button></td>
-                </tr>
-             <?php }?>
+        <tr>
+          <td><?php echo $c->unit_id;?></td>
+          <td><?php echo $c->name;?></td>
+          <td><?php echo $c->variant;?></td>
+            <td><?php echo $c->transmission;?></td>
+            <td><?php echo $c->price;?></td>
+            <td><?php echo $c->horse_power;?></td>
+            <td><?php echo $c->fuel;?></td>
+            <td><?php echo $c->displacement;?></td>
+            <td><?php echo $c->wheel_size;?></td>
+            <td><?php echo $c->engine_spec;?></td>
+            <td><?php echo $c->max_capacity;?></td>
+            <td><?php echo $c->stock;?></td>
+            <td><?php echo $c->downpayment;?></td>
+            <td><button class="btn btn-success" onclick="Order(<?php echo $c->unit_id;?>)">Order</button>
+            <button class="btn btn-success" onclick="edit_stock(<?php echo $c->unit_id;?>)">Add stock</button></td>
+          </tr>
+          <?php }?>
       </tbody>
     </table>
-
   </div>
 
   <script src="<?php echo base_url('assests/jquery/jquery-3.1.0.min.js')?>"></script>
@@ -287,7 +287,7 @@ $this->session->userdata['logged_in']['nav'] = 2;
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
   <!-- End Bootstrap modal -->
-  
+
   <!-- Modal for adding stock -->
 <div class="modal fade" id="modal_stock" role="dialog">
   <div class="modal-dialog">
