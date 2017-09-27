@@ -9,12 +9,13 @@ $this->session->userdata['logged_in']['nav'] = 2;
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo $user?></title>
-    <link rel ="stylesheet" href="<?php echo base_url("css/dataTables.min.css"); ?>">
+    <link href="<?php echo base_url('assests/bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
     <link rel ="stylesheet" href="<?php echo base_url("css/bootstrap.min.css"); ?>">
     <link rel ="stylesheet" href="<?php echo base_url("css/style.css"); ?>">
     <link rel ="stylesheet" href="<?php echo base_url("css/font-awesome.min.css"); ?>">
     <link rel ="stylesheet" href="<?php echo base_url("css/font-awesome.css"); ?>">
     <link rel ="stylesheet" href="<?php echo base_url("css/cars.css"); ?>">
+    <link href="<?php echo base_url('assests/datatables/css/dataTables.bootstrap.css')?>" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -161,9 +162,14 @@ $this->session->userdata['logged_in']['nav'] = 2;
             dataType: "JSON",
             success: function(data)
             {
+              if(save_method == 'add'){
                //if success close modal and reload ajax table
                $('#modal_form').modal('hide');
               location.reload();// for reload a page
+              }else{
+                $('#modal_stock').modal('hide');
+              location.reload();// for reload a page
+              }
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
