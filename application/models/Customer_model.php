@@ -1,12 +1,14 @@
 <?php
 	Class Customer_model extends CI_Model {
 
-		
-		Public function index(){
-			
-			
-			
+		var $table = 'customers';
+
+		public function __construct()
+		{
+			parent::__construct();
+			$this->load->database();
 		}
+
 		public function Getcustomers(){
 			$id = $this->session->userdata['logged_in']['id'];
 			$condition = "emp =" . "'" . $id. "'";
@@ -16,7 +18,21 @@
 			$query = $this->db->get();
 			$data = $query->result();
 			return $data;
-			}
 		}
+
+		public function get_by_id($id)
+		{
+			$this->db->from($this->table);
+			$this->db->where('CustomerID',$id);
+			$query = $this->db->get();
+			return $query->row();
+		}
+
+		public function customer_update($where, $data)
+		{
+			$this->db->update($this->table, $data, $where);
+			return $this->db->affected_rows();
+		}
+	}
 	
 ?>

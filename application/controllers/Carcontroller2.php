@@ -14,7 +14,7 @@ class Carcontroller2 extends CI_Controller {
 	public function index()
 	{
 
-		$data['cars']=$this->Carmodel2->get_all_books();
+		$data['cars']=$this->Carmodel2->get_all_cars();
 		$this->load->view('Carview2',$data);
 	}
 	public function book_add()

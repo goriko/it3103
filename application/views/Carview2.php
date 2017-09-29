@@ -15,7 +15,6 @@
     <link rel ="stylesheet" href="<?php echo base_url("css/font-awesome.min.css"); ?>">
     <link rel ="stylesheet" href="<?php echo base_url("css/font-awesome.css"); ?>">
     <link rel ="stylesheet" href="<?php echo base_url("css/cars.css"); ?>">
-<<<<<<< HEAD
     <link href="<?php echo base_url('assests/datatables/css/dataTables.bootstrap.css')?>" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,8 +22,6 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-=======
->>>>>>> 510811456b9f693c9d3429b5f8a6f5e8c6d6fe14
   </head>
   <body>
     <?php include('navbar.php');?>
@@ -70,8 +67,7 @@
             <td><?php echo $c->max_capacity;?></td>
             <td><?php echo $c->stock;?></td>
             <td><?php echo $c->downpayment;?></td>
-            <td><button class="btn btn-success" onclick="Order(<?php echo $c->unit_id;?>)">Order</button>
-            <button class="btn btn-success" onclick="edit_stock(<?php echo $c->unit_id;?>)">Add stock</button></td>
+            <td><button id="addStock" class="btn btn-success" onclick="Order(<?php echo $c->unit_id;?>)">Order</button><button class="btn btn-success" onclick="edit_stock(<?php echo $c->unit_id;?>)">Add stock</button></td>
           </tr>
           <?php }?>
       </tbody>
@@ -125,12 +121,34 @@
             $('[name="maxcapacity"]').val(data.max_capacity);
             $('[name="stock"]').val(data.stock);
             $('[name="downpayment"]').val(data.downpayment);
-
-
-
-
-            $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
-            $('.modal-title').text('Add stock'); // Set title to Bootstrap modal title
+            //hide all the labels and dropdowns
+            $('#modelLabel').hide();
+            $('#variantLabel').hide();
+            $('#priceLabel').hide();
+            $('#horsepowerLabel').hide();
+            $('#fuelLabel').hide();
+            $('#displacementLabel').hide();
+            $('#wheelsizeLabel').hide();
+            $('#enginespecLabel').hide();
+            $('#maxcapacityLabel').hide();
+            $('#downpaymentLabel').hide();
+            $('#transmissionhide').hide();
+            //hide all the inputs not needed for stock
+            $('#model').prop('type', 'hidden');
+            $('#var').prop('type', 'hidden');
+            $('#transmission').prop('type', 'hidden');
+            $('#price').prop('type', 'hidden');
+            $('#horsepower').prop('type', 'hidden');
+            $('#fuel').prop('type', 'hidden');
+            $('#displacement').prop('type', 'hidden');
+            $('#wheelsize').prop('type', 'hidden');
+            $('#enginespec').prop('type', 'hidden');
+            $('#maxcapacity').prop('type', 'hidden');
+            $('#downpayment').prop('type', 'hidden');
+            // show bootstrap modal when complete loaded
+            $('#modal_form').modal('show');
+             // Set title to Bootstrap modal title 
+            $('.modal-title').text('Add stock');
 
         },
         error: function (jqXHR, textStatus, errorThrown)
@@ -183,6 +201,7 @@
       $('#modal_form').modal('show');
     }
 
+
   </script>
 
   <!-- Bootstrap modal -->
@@ -193,24 +212,24 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h3 class="modal-title">Car Form</h3>
       </div>
-      <div class="modal-body form">
+      <div class="modal-body form" >
         <form action="#" id="form" class="form-horizontal">
           <input type="hidden" value="" name="unitid"/>
           <div class="form-body">
             <div class="form-group">
-              <label class="control-label col-md-3">Model</label>
+              <label id='modelLabel' class="control-label col-md-3">Model</label>
               <div class="col-md-9">
-                <input name="model" placeholder="Model Name" class="form-control" type="text" required="required">
+                <input name="model" placeholder="Model Name" class="form-control" type="text" required="required" id='model'>
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-md-3">Variant</label>
+              <label id='variantLabel' class="control-label col-md-3">Variant</label>
               <div class="col-md-9">
-                <input name="variant" placeholder="Variant" class="form-control" type="text" required="required">
+                <input name="variant" placeholder="Variant" class="form-control" type="text" required="required" id='var'>
               </div>
             </div>
-            <div class="form-group">
-              <label class="control-label col-md-3">Transmission</label>
+            <div id='transmissionhide' class="form-group">
+              <label id='transmissionLabel' class="control-label col-md-3">Transmission</label>
               <div class="col-md-9">
                   <select name='transmission' class='form-control'>
                     <option value="automatic">Automatic</option>
@@ -219,93 +238,63 @@
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-md-3">Price</label>
+              <label id='priceLabel' class="control-label col-md-3">Price</label>
               <div class="col-md-9">
-                <input name="price" placeholder="Price" class="form-control" type="text" required="required">
+                <input name="price" placeholder="Price" class="form-control" type="text" required="required" id='price'>
 
               </div>
             </div>
 						<div class="form-group">
-							<label class="control-label col-md-3">Horse Power</label>
+							<label id='horsepowerLabel' class="control-label col-md-3">Horse Power</label>
 							<div class="col-md-9">
-								<input name="horsepower" placeholder="Horse Power" class="form-control" type="text" required="required">
-
+								<input name="horsepower" placeholder="Horse Power" class="form-control" type="text" required="required" id='horsepower'>
 							</div>
 						</div>
             <div class="form-group">
-              <label class="control-label col-md-3">Fuel</label>
+              <label id='fuelLabel' class="control-label col-md-3">Fuel</label>
               <div class="col-md-9">
-                <input name="fuel" placeholder="Fuel" class="form-control" type="text" required="required">
+                <input name="fuel" placeholder="Fuel" class="form-control" type="text" required="required" id='fuel'>
 
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-md-3">Displacement</label>
+              <label id='displacementLabel' class="control-label col-md-3">Displacement</label>
               <div class="col-md-9">
-                <input name="displacement" placeholder="Displacement" class="form-control" type="text" required="required">
+                <input name="displacement" placeholder="Displacement" class="form-control" type="text" required="required" id='displacement'>
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-md-3">Wheel Size</label>
+              <label id='wheelsizeLabel' class="control-label col-md-3">Wheel Size</label>
               <div class="col-md-9">
-                <input name="wheelsize" placeholder="Wheel Size" class="form-control" type="text" required="required">
+                <input name="wheelsize" placeholder="Wheel Size" class="form-control" type="text" required="required" id='wheelsize'>
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-md-3">Engine Spec</label>
+              <label id='enginespecLabel' class="control-label col-md-3">Engine Spec</label>
               <div class="col-md-9">
-                <input name="enginespec" placeholder="Engine Spec" class="form-control" type="text" required="required">
+                <input name="enginespec" placeholder="Engine Spec" class="form-control" type="text" required="required" id='enginespec'>
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-md-3">Max Capacity</label>
+              <label id='maxcapacityLabel' class="control-label col-md-3">Max Capacity</label>
               <div class="col-md-9">
-                <input name="maxcapacity" placeholder="Max Capacity" class="form-control" type="text" required="required">
+                <input name="maxcapacity" placeholder="Max Capacity" class="form-control" type="text" required="required" id='maxcapacity'>
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-md-3">Stock</label>
+              <label class="s control-label col-md-3">Stock</label>
               <div class="col-md-9">
                 <input name="stock" placeholder="Stock" class="form-control" type="text" required="required">
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-md-3">Downpayment</label>
+              <label id='downpaymentLabel' class="control-label col-md-3">Downpayment</label>
               <div class="col-md-9">
-                <input name="downpayment" placeholder="Downpayment" class="form-control" type="text" required="required">
+                <input name="downpayment" placeholder="Downpayment" class="form-control" type="text" required="required" id='downpayment'>
               </div>
             </div>
 
           </div>
-        </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" id="btnSave" onclick="save()" class="btn btn-primary">Save</button>
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-  <!-- End Bootstrap modal -->
-
-  <!-- Modal for adding stock -->
-<div class="modal fade" id="modal_stock" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h3 class="modal-title"></h3>
-      </div>
-      <div class="modal-body form">
-        <form action="#" id="form" class="form-horizontal">
-        <input type="text" value="" name="Edit_id"/>
-            <div class="form-group">
-              <label class="control-label col-md-3">Stock</label>
-              <div class="col-md-9">
-                <input name="stockadd" placeholder="stock" class="form-control" type="text" required="required">
-
-              </div>
-            </div>
         </form>
           </div>
           <div class="modal-footer">

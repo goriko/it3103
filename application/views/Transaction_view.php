@@ -1,51 +1,110 @@
+<?php
+$user=$this->session->userdata['logged_in']['fname'];
+?>
 <html>
-<meta charset ="utf-8">
-    <link rel ="stylesheet" href="<?php echo base_url("css/dataTables.min.css"); ?>">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><?php echo $user?></title>
+    <link href="<?php echo base_url('assests/bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
     <link rel ="stylesheet" href="<?php echo base_url("css/bootstrap.min.css"); ?>">
     <link rel ="stylesheet" href="<?php echo base_url("css/style.css"); ?>">
     <link rel ="stylesheet" href="<?php echo base_url("css/font-awesome.min.css"); ?>">
     <link rel ="stylesheet" href="<?php echo base_url("css/font-awesome.css"); ?>">
     <link rel ="stylesheet" href="<?php echo base_url("css/cars.css"); ?>">
-<head>
-	<body>
+    <link href="<?php echo base_url('assests/datatables/css/dataTables.bootstrap.css')?>" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
     <?php include('navbar.php');?>
     <br/>
-		<div class="col-md-12 ordertable">
-        <!--Order Table-->
-        	<center>
-            	<h1>Order Table</h1>
-                	<table class ="customerTable">
-                    	<thead>
-                        	<th>Order ID</th>
-                            <th>Car</th>
-                            <th>Order Date</th>
-                            <th></th>
-                        </thead>
-                    	<tbody>
-                    		<?php
-                    		foreach($trans as $r) { 
-                    		echo"<tr>
-                    		<td>$r->Order_ID</td>
-                    		<td>$r->variant $r->name</td>
-                    		<td>$r->OrderDate</td>
-                            <td><a href='";
-                            echo base_url("index.php/Orderdetails_controller/index/".$r->Order_ID);
-                            echo "'><button class='btn btn-success'>View order details</button></a></td>
-                            </tr>";
-                                }
-                    		?>
-                 		</tbody>
-                    </table>
-            </center>
-         </div>
-	   </body>
-    </head>
+    <div class="col-md-offset-1 col-md-10">
+      <center><h1>Customers</h1></center>
+      <br />
+      <br />
+      <table id="table_id" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+         <tr>
+          <th>Order ID</th>
+          <th>Car</th>
+          <th>Order Date</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach($trans as $t){?>
+        <tr>
+            <td><?php echo $t->Order_ID;?></td>
+            <td><?php echo $t->variant;$t->name;?></td>
+            <td><?php echo $t->OrderDate;?></td>
+            <td><button class='btn btn-success' onclick="Order()">View order details</button></td>
+          </tr>
+          <?php }?>
+      </tbody>
+    </table>
+  </div>
+
+  <script src="<?php echo base_url('assests/jquery/jquery-3.1.0.min.js')?>"></script>
+  <script src="<?php echo base_url('assests/bootstrap/js/bootstrap.min.js')?>"></script>
+  <script src="<?php echo base_url('assests/datatables/js/jquery.dataTables.min.js')?>"></script>
+  <script src="<?php echo base_url('assests/datatables/js/dataTables.bootstrap.js')?>"></script>
+
+
+  <script type="text/javascript">
+  $(document).ready( function () {
+      $('#table_id').DataTable();
+    } );
+
+    function Order()
+    {
+      $('#modal_form').modal('show');
+    }
+
+  </script>
+
+  <!-- Bootstrap modal -->
+  <div class="modal fade" id="modal_form" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title">Order Details</h3>
+      </div>
+      <div class="modal-body">
+            <table id="table_id" class="table table-striped table-bordered" cellspacing="0" width="100%">
+      <tbody>
+        <tr>
+            <td>Order Type</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Term</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Balance</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Months To Pay</td>
+            <td></td>
+        </tr>
+      </tbody>
+      </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+  <!-- End Bootstrap modal -->
+    </body>
+  </head>
 </html>
-<script src="<?php echo base_url(); ?>js/jquery.min.js"></script>
-<script src="<?php echo base_url(); ?>js/datatables.min.js"></script>
-<script src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
-<script>
-    $(document).ready(function(){
-        $(".customerTable").DataTable();
-            })
-</script>

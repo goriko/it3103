@@ -14,7 +14,7 @@ class Carmodel2 extends CI_Model
 	}
 
 
-public function get_all_books()
+public function get_all_cars()
 {
 $this->db->from('car');
 $query=$this->db->get();
