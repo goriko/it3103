@@ -67,7 +67,7 @@
             <td><?php echo $c->max_capacity;?></td>
             <td><?php echo $c->stock;?></td>
             <td><?php echo $c->downpayment;?></td>
-            <td><button id="addStock" class="btn btn-success" onclick="Order(<?php echo $c->unit_id;?>)">Order</button>
+            <td><a href=<?php echo base_url('index.php/NeworderController/addOrder/'.$c->unit_id);?>><button class='btn btn-primary'>Order</button></a>
             <button class="btn btn-success" onclick="edit_stock(<?php echo $c->unit_id;?>)">Update stock</button></td>
           </tr>
           <?php }?>
