@@ -12,5 +12,11 @@
 			$data = $query->result();
 			return $data;
 		}
+		public function Get_Detail($id){
+			$this->db->from('order_details');
+			$this->db->where('Order_id',$id);
+			$query = $this->db->get();
+			return $query->row();
+		}
 	}
 ?>

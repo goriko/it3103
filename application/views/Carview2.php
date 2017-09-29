@@ -67,7 +67,8 @@
             <td><?php echo $c->max_capacity;?></td>
             <td><?php echo $c->stock;?></td>
             <td><?php echo $c->downpayment;?></td>
-            <td><button id="addStock" class="btn btn-success" onclick="Order(<?php echo $c->unit_id;?>)">Order</button><button class="btn btn-success" onclick="edit_stock(<?php echo $c->unit_id;?>)">Add stock</button></td>
+            <td><button id="addStock" class="btn btn-success" onclick="Order(<?php echo $c->unit_id;?>)">Order</button>
+            <button class="btn btn-success" onclick="edit_stock(<?php echo $c->unit_id;?>)">Update stock</button></td>
           </tr>
           <?php }?>
       </tbody>
@@ -91,6 +92,18 @@
     function add_car()
     {
       save_method = 'add';
+      $('#transmissionhide').show();
+      $('#modelhide').show();
+      $('#varianthide').show();
+      $('#pricehide').show();
+      $('#horsepowerhide').show();
+      $('#fuelhide').show();
+      $('#displacementhide').show();
+      $('#wheelsizehide').show();
+      $('#enignespechide').show();
+      $('#maxcapacityhide').show();
+      $('#downpaymenthide').show();
+      
       $('#form')[0].reset(); // reset form on modals
       $('#modal_form').modal('show'); // show bootstrap modal
     //$('.modal-title').text('Add Person'); // Set Title to Bootstrap modal title
@@ -99,6 +112,7 @@
     function edit_stock(id)
     {
       save_method = 'update';
+      
       $('#form')[0].reset(); // reset form on modals
 
       //Ajax Load data from ajax
@@ -119,36 +133,23 @@
             $('[name="wheelsize"]').val(data.wheel_size);
             $('[name="enginespec"]').val(data.engine_spec);
             $('[name="maxcapacity"]').val(data.max_capacity);
-            $('[name="stock"]').val(data.stock);
             $('[name="downpayment"]').val(data.downpayment);
             //hide all the labels and dropdowns
-            $('#modelLabel').hide();
-            $('#variantLabel').hide();
-            $('#priceLabel').hide();
-            $('#horsepowerLabel').hide();
-            $('#fuelLabel').hide();
-            $('#displacementLabel').hide();
-            $('#wheelsizeLabel').hide();
-            $('#enginespecLabel').hide();
-            $('#maxcapacityLabel').hide();
-            $('#downpaymentLabel').hide();
             $('#transmissionhide').hide();
-            //hide all the inputs not needed for stock
-            $('#model').prop('type', 'hidden');
-            $('#var').prop('type', 'hidden');
-            $('#transmission').prop('type', 'hidden');
-            $('#price').prop('type', 'hidden');
-            $('#horsepower').prop('type', 'hidden');
-            $('#fuel').prop('type', 'hidden');
-            $('#displacement').prop('type', 'hidden');
-            $('#wheelsize').prop('type', 'hidden');
-            $('#enginespec').prop('type', 'hidden');
-            $('#maxcapacity').prop('type', 'hidden');
-            $('#downpayment').prop('type', 'hidden');
+            $('#modelhide').hide();
+            $('#varianthide').hide();
+            $('#pricehide').hide();
+            $('#horsepowerhide').hide();
+            $('#fuelhide').hide();
+            $('#displacementhide').hide();
+            $('#wheelsizehide').hide();
+            $('#enignespechide').hide();
+            $('#maxcapacityhide').hide();
+            $('#downpaymenthide').hide();
             // show bootstrap modal when complete loaded
             $('#modal_form').modal('show');
              // Set title to Bootstrap modal title 
-            $('.modal-title').text('Add stock');
+            $('.modal-title').text('Update stock');
 
         },
         error: function (jqXHR, textStatus, errorThrown)
@@ -195,11 +196,6 @@
             }
         });
     }
-    function Order(){
-       save_method = 'add';
-      $('#form')[0].reset(); // reset form on modals
-      $('#modal_form').modal('show');
-    }
 
 
   </script>
@@ -216,20 +212,20 @@
         <form action="#" id="form" class="form-horizontal">
           <input type="hidden" value="" name="unitid"/>
           <div class="form-body">
-            <div class="form-group">
-              <label id='modelLabel' class="control-label col-md-3">Model</label>
+            <div class="form-group" id="modelhide">
+              <label class="control-label col-md-3">Model</label>
               <div class="col-md-9">
-                <input name="model" placeholder="Model Name" class="form-control" type="text" required="required" id='model'>
+                <input name="model" placeholder="Model Name" class="form-control" type="text" required="required" >
               </div>
             </div>
-            <div class="form-group">
-              <label id='variantLabel' class="control-label col-md-3">Variant</label>
+            <div class="form-group" id="varianthide">
+              <label class="control-label col-md-3">Variant</label>
               <div class="col-md-9">
-                <input name="variant" placeholder="Variant" class="form-control" type="text" required="required" id='var'>
+                <input name="variant" placeholder="Variant" class="form-control" type="text" required="required" >
               </div>
             </div>
             <div id='transmissionhide' class="form-group">
-              <label id='transmissionLabel' class="control-label col-md-3">Transmission</label>
+              <label class="control-label col-md-3">Transmission</label>
               <div class="col-md-9">
                   <select name='transmission' class='form-control'>
                     <option value="automatic">Automatic</option>
@@ -237,60 +233,60 @@
                   </select>
               </div>
             </div>
-            <div class="form-group">
-              <label id='priceLabel' class="control-label col-md-3">Price</label>
+            <div class="form-group" id="pricehide">
+              <label class="control-label col-md-3">Price</label>
               <div class="col-md-9">
-                <input name="price" placeholder="Price" class="form-control" type="text" required="required" id='price'>
+                <input name="price" placeholder="Price" class="form-control" type="text" required="required">
 
               </div>
             </div>
-						<div class="form-group">
-							<label id='horsepowerLabel' class="control-label col-md-3">Horse Power</label>
+						<div class="form-group" id="horsepowerhide">
+							<label class="control-label col-md-3">Horse Power</label>
 							<div class="col-md-9">
-								<input name="horsepower" placeholder="Horse Power" class="form-control" type="text" required="required" id='horsepower'>
+								<input name="horsepower" placeholder="Horse Power" class="form-control" type="text" required="required">
 							</div>
 						</div>
-            <div class="form-group">
-              <label id='fuelLabel' class="control-label col-md-3">Fuel</label>
+            <div class="form-group" id="fuelhide">
+              <label class="control-label col-md-3">Fuel</label>
               <div class="col-md-9">
-                <input name="fuel" placeholder="Fuel" class="form-control" type="text" required="required" id='fuel'>
+                <input name="fuel" placeholder="Fuel" class="form-control" type="text" required="required">
 
               </div>
             </div>
-            <div class="form-group">
-              <label id='displacementLabel' class="control-label col-md-3">Displacement</label>
+            <div class="form-group" id="displacementhide">
+              <label class="control-label col-md-3">Displacement</label>
               <div class="col-md-9">
-                <input name="displacement" placeholder="Displacement" class="form-control" type="text" required="required" id='displacement'>
+                <input name="displacement" placeholder="Displacement" class="form-control" type="text" required="required">
               </div>
             </div>
-            <div class="form-group">
-              <label id='wheelsizeLabel' class="control-label col-md-3">Wheel Size</label>
+            <div class="form-group" id="wheelsizehide">
+              <label class="control-label col-md-3">Wheel Size</label>
               <div class="col-md-9">
-                <input name="wheelsize" placeholder="Wheel Size" class="form-control" type="text" required="required" id='wheelsize'>
+                <input name="wheelsize" placeholder="Wheel Size" class="form-control" type="text" required="required">
               </div>
             </div>
-            <div class="form-group">
-              <label id='enginespecLabel' class="control-label col-md-3">Engine Spec</label>
+            <div class="form-group" id="enignespechide">
+              <label class="control-label col-md-3">Engine Spec</label>
               <div class="col-md-9">
-                <input name="enginespec" placeholder="Engine Spec" class="form-control" type="text" required="required" id='enginespec'>
+                <input name="enginespec" placeholder="Engine Spec" class="form-control" type="text" required="required">
               </div>
             </div>
-            <div class="form-group">
-              <label id='maxcapacityLabel' class="control-label col-md-3">Max Capacity</label>
+            <div class="form-group" id="maxcapacityhide">
+              <label class="control-label col-md-3">Max Capacity</label>
               <div class="col-md-9">
-                <input name="maxcapacity" placeholder="Max Capacity" class="form-control" type="text" required="required" id='maxcapacity'>
+                <input name="maxcapacity" placeholder="Max Capacity" class="form-control" type="text" required="required" >
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="stockhide">
               <label class="s control-label col-md-3">Stock</label>
               <div class="col-md-9">
                 <input name="stock" placeholder="Stock" class="form-control" type="text" required="required">
               </div>
             </div>
-            <div class="form-group">
-              <label id='downpaymentLabel' class="control-label col-md-3">Downpayment</label>
+            <div class="form-group" id="downpaymenthide">
+              <label class="control-label col-md-3">Downpayment</label>
               <div class="col-md-9">
-                <input name="downpayment" placeholder="Downpayment" class="form-control" type="text" required="required" id='downpayment'>
+                <input name="downpayment" placeholder="Downpayment" class="form-control" type="text" required="required" >
               </div>
             </div>
 

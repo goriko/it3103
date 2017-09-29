@@ -6,9 +6,13 @@
 			
 		}
 		Public function index(){
-			$data_id = $this->uri->segment(3);
-			$data['trans'] = $this->Transaction_model->get_orders($data_id);
-			$this->load->view('Transaction_view', $data);
+			$transaction_id = $this->uri->segment(3);
+			$transactionData['trans'] = $this->Transaction_model->get_orders($transaction_id);
+			$this->load->view('Transaction_view', $transactionData);
+		}
+		Public function Get_orderdetails($id){
+			$OrderDetails = $this->Transaction_model->get_Detail($id);
+			echo json_encode($OrderDetails);
 		}
 	}
 ?>

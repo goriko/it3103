@@ -3,7 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Carmodel2 extends CI_Model
 {
-
 	var $table = 'car';
 
 
@@ -14,17 +13,17 @@ class Carmodel2 extends CI_Model
 	}
 
 
-public function get_all_cars()
-{
-$this->db->from('car');
-$query=$this->db->get();
-return $query->result();
-}
+	public function get_all_cars()
+	{
+		$this->db->from('car');
+		$query=$this->db->get();
+		return $query->result();
+	}		
 
 
 	public function get_by_id($id)
 	{
-		$this->db->from($this->table);
+		$this->db->from('car');
 		$this->db->where('unit_id',$id);
 		$query = $this->db->get();
 

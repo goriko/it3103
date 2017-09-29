@@ -43,7 +43,7 @@ $user=$this->session->userdata['logged_in']['fname'];
             <td><?php echo $t->Order_ID;?></td>
             <td><?php echo $t->variant;$t->name;?></td>
             <td><?php echo $t->OrderDate;?></td>
-            <td><button class='btn btn-success' onclick="Order()">View order details</button></td>
+            <td><button class='btn btn-success' onclick="ShowDetails(<?php echo $t->Order_ID?>)">View order details</button></td>
           </tr>
           <?php }?>
       </tbody>
@@ -61,9 +61,29 @@ $user=$this->session->userdata['logged_in']['fname'];
       $('#table_id').DataTable();
     } );
 
-    function Order()
+    function ShowDetails(id)
     {
-      $('#modal_form').modal('show');
+
+      $('#OrderType').html('');
+      $('#Term').html('');
+      $('#balance').html('');
+      $('#Months').html(''); // reset form on modals
+
+      //Ajax Load data from ajax
+      $.ajax({
+        url : "<?php echo site_url('/Transaction_controller/Get_Orderdetails/')?>/" + id,
+        type: "GET",
+        dataType: "JSON",
+        success: function(data)
+        {
+          $('#OrderType').html(data.ordertype);
+          $('#Term').html(data.term);
+          $('#balance').html(data.balance);
+          $('#Months').html(data.MonthsToPay);
+
+          $('#modal_form').modal('show');
+        }
+      });
     }
 
   </script>
@@ -81,19 +101,19 @@ $user=$this->session->userdata['logged_in']['fname'];
       <tbody>
         <tr>
             <td>Order Type</td>
-            <td></td>
+            <td id="OrderType"></td>
         </tr>
         <tr>
             <td>Term</td>
-            <td></td>
+            <td id="Term"></td>
         </tr>
         <tr>
             <td>Balance</td>
-            <td></td>
+            <td id="balance"></td>
         </tr>
         <tr>
             <td>Months To Pay</td>
-            <td></td>
+            <td id="Months"></td>
         </tr>
       </tbody>
       </table>
