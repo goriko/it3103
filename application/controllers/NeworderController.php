@@ -7,8 +7,9 @@ class NeworderController extends CI_Controller {
 	 		$this->load->model('NeworderModel');
 	 	}
 		function addOrder($id){
-			$selectedCar['car'] = $this->NeworderModel->getCarinfo($id);
-			$this->load->view('Neworderview',$selectedCar);
+			$data['car'] = $this->NeworderModel->getCarinfo($id);
+			$data['cust'] = $this->NeworderModel->getCust();
+			$this->load->view('Neworderview', $data);
 		}
-	}	
+	}
 ?>

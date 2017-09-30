@@ -103,7 +103,7 @@
       $('#enignespechide').show();
       $('#maxcapacityhide').show();
       $('#downpaymenthide').show();
-      
+
       $('#form')[0].reset(); // reset form on modals
       $('#modal_form').modal('show'); // show bootstrap modal
     //$('.modal-title').text('Add Person'); // Set Title to Bootstrap modal title
@@ -112,7 +112,7 @@
     function edit_stock(id)
     {
       save_method = 'update';
-      
+
       $('#form')[0].reset(); // reset form on modals
 
       //Ajax Load data from ajax
@@ -148,7 +148,7 @@
             $('#downpaymenthide').hide();
             // show bootstrap modal when complete loaded
             $('#modal_form').modal('show');
-             // Set title to Bootstrap modal title 
+             // Set title to Bootstrap modal title
             $('.modal-title').text('Update stock');
 
         },
@@ -227,7 +227,7 @@
             <div id='transmissionhide' class="form-group">
               <label class="control-label col-md-3">Transmission</label>
               <div class="col-md-9">
-                  <select name='transmission' class='form-control'>
+                  <select name='transmission' class='form-control'>s
                     <option value="automatic">Automatic</option>
                     <option value="manual">Manual</option>
                   </select>
