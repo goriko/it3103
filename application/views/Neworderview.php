@@ -1,8 +1,8 @@
 <?php
 $user=$this->session->userdata['logged_in']['fname'];
 $userID=$this->session->userdata['logged_in']['id'];
-foreach($car as $t){
-      $Carid=$t->unit_id;
+foreach($car as $c){
+      $Carid=$c->unit_id;
       }
 ?>
 <html>
@@ -26,7 +26,8 @@ foreach($car as $t){
       echo $t->name." ".$t->variant;
       }?>
     </h1>
-      <form id="form1" method="POST" action="addorder.php" autocomplete="off">
+      <?php echo form_open('NeworderController/order_add');?>
+      <input type="hidden" value="<?php echo $Carid;?>" name="CarID"/>
 
         <span>Customer Name</span>
         <select name="customerid" class="infoput">
@@ -55,11 +56,11 @@ foreach($car as $t){
           </span><br><br>
         </div>
 
-        <button class="btn btn-primary" onclick="myFunction()">Buy!</button>
+        <button class="btn btn-primary" onclick="Addorder()">Buy!</button>
 
       </form>
       </center>
-      <span>If customer doesnt have a record yet, please click <a href='#' id='link' onclick="NewCust()">here</a></span><br/>
+      <span>If customer doesnt have a record yet, please click <a href='#' id='link' onclick="NewCust(<?php echo $Carid ?>)">here</a></span><br/>
   </body>
 </html>
 
@@ -71,34 +72,58 @@ foreach($car as $t){
 
 <script type="text/javascript">
 
-$(document).ready( function () {
-    function NewCust(id){
-          $('#CarID').val(id);
+$(document).ready( function(){
+});
+function NewCust(id){
+          $('[name="CarID"]').val(id);
           $('#form')[0].reset();
           $('#modal_form').modal('show');
         }
-} );
+        function save()
+    {
+       // ajax adding data to database
+          $.ajax({
+            url : "<?php echo site_url('/NeworderController/cust_add')?>",
+            type: "POST",
+            data: $('#form').serialize(),
+            dataType: "JSON",
+            success: function(data)
+            {
+               //if success close modal and reload ajax table
+               $('#modal_form').modal('hide');
+              location.reload();// for reload a page
+              
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                alert('Error adding');
+            }
+        });
+    }
 
-</script>
 
-<div class="modal fade" id="modal_form" role="dialog">
-<div class="modal-dialog">
-  <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <h3 class="modal-title">Add New Customer</h3>
-    </div>
-    <input type="hidden" value="" name="CustID"/>
-    <input type="hidden" value="<?php echo $userID ?>" name="UserID"/>
-    <input type="text" value="" name="CarID"/>
-    <div class="modal-body form" >
-      <form action="#" id="form" class="form-horizontal">
-          <label class="control-label col-md-3">Name</label>
-          <div class="col-md-9">
-            <input name="name" placeholder="Name" class="form-control" type="text" required="required" >
-          </div>
+  </script>
 
-          <label class="control-label col-md-3">Civil Status</label>
+  <!-- Bootstrap modal -->
+  <div class="modal fade" id="modal_form" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title">Car Form</h3>
+      </div>
+      <div class="modal-body form" >
+        <form action="#" id="form" class="form-horizontal">
+          <input type="hidden" value="<?php echo $userID ?>" name="UserID"/>
+          <div class="form-body">
+            <div class="form-group">
+              <label class="control-label col-md-3">Name</label>
+              <div class="col-md-9">
+                <input name="name" placeholder="Name" class="form-control" type="text" required="required" >
+              </div>
+            </div>
+            <div  class="form-group">
+              <label class="control-label col-md-3">Civil Status</label>
           <div class="col-md-9">
               <select name='civilstatus' class='form-control'>s
                 <option value="Single">Single</option>
@@ -106,22 +131,29 @@ $(document).ready( function () {
                 <option value="Widowed">Widowed</option>
               </select>
           </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3">Address</label>
+              <div class="col-md-9">
+                <input name="address" placeholder="Address" class="form-control" type="text" required="required">
 
-          <label class="control-label col-md-3">Address</label>
-          <div class="col-md-9">
-            <input name="address" placeholder="Address" class="form-control" type="text" required="required" >
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3">Contact Number</label>
+              <div class="col-md-9">
+                <input name="contact" placeholder="Contact Number" class="form-control" type="text" required="required">
+              </div>
+            </div>
+            
           </div>
-
-          <label class="control-label col-md-3">Contact Number</label>
-          <div class="col-md-9">
-            <input name="contactnum" placeholder="Contact Number" class="form-control" type="text" required="required" >
+        </form>
           </div>
-      </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" id="btnSave" onclick="" class="btn btn-primary">Add</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
+          <div class="modal-footer">
+            <button type="button" id="btnSave" onclick="save()" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+  <!-- End Bootstrap modal -->

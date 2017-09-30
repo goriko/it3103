@@ -11,5 +11,31 @@ class NeworderController extends CI_Controller {
 			$data['cust'] = $this->NeworderModel->getCust();
 			$this->load->view('Neworderview', $data);
 		}
+		public function cust_add()
+		{
+			$custdata = array(
+					'Name' => $this->input->post('name'),
+					'CivilStatus' => $this->input->post('civilstatus'),
+					'Address' => $this->input->post('address'),
+					'ContactNumber' => $this->input->post('contact'),
+					'emp' => $this->input->post('UserID'),
+				);
+			$insert = $this->NeworderModel->cust_add($custdata);
+			echo json_encode(array("status" => TRUE));
+		}
+		public function order_add()
+		{
+			$orderdata = array(
+					'Customer_id' => $this->input->post('customerid'),
+					'Car_id' => $this->input->post('CarID'),
+				);
+			$orderdetailsdata = array(
+					'ordertype' => $this->input->post('paymentmode'),
+					'term' => $this->input->post('term'),
+				);
+			$insert = $this->NeworderModel->order_add($orderdata);
+			$insert = $this->NeworderModel->orderdetails_add($orderdetailsdata);
+			redirect('Carcontroller2','refresh');
+		}
 	}
 ?>
