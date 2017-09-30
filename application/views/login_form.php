@@ -33,7 +33,7 @@
 				<br>
 					<input type="text" class="form-control" required="required" name="username" id="name" placeholder="Username"/><br />
 					<input type="password" class="form-control" required="required" name="password" id="password" placeholder="**********"/><br/>
-					<button type="submit" value=" Login " class="btn btn-primary">Login</button><br><br>
+					<button type="submit" value="Login" class="btn btn-primary">Login</button><br><br>
 					<a href="<?php echo base_url('index.php/Register_controller') ?>">Click here to register</a>
 					<?php echo form_close(); ?>
 				</div>
@@ -42,4 +42,3 @@
 		<script src="<?php echo base_url("js/bootstrap.min.js")?>"></script>
 	</body>
 </html>
-
