@@ -1,5 +1,9 @@
 <?php
 $user=$this->session->userdata['logged_in']['fname'];
+$userID=$this->session->userdata['logged_in']['id'];
+foreach($car as $t){
+      $Carid=$t->unit_id;
+      }
 ?>
 <html>
   <head>
@@ -52,9 +56,10 @@ $user=$this->session->userdata['logged_in']['fname'];
         </div>
 
         <button class="btn btn-primary" onclick="myFunction()">Buy!</button>
+
       </form>
       </center>
-      <span>If customer doesnt have a record yet, please click <a href='#' id='link'>here</a></span><br/>
+      <span>If customer doesnt have a record yet, please click <a href='#' id='link' onclick="NewCust()">here</a></span><br/>
   </body>
 </html>
 
@@ -67,8 +72,8 @@ $user=$this->session->userdata['logged_in']['fname'];
 <script type="text/javascript">
 
 $(document).ready( function () {
-  var a = document.getElementById("link");
-        a.onclick = function() {
+    function NewCust(id){
+          $('#CarID').val(id);
           $('#form')[0].reset();
           $('#modal_form').modal('show');
         }
@@ -81,8 +86,11 @@ $(document).ready( function () {
   <div class="modal-content">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <h3 class="modal-title">Add Car Form</h3>
+      <h3 class="modal-title">Add New Customer</h3>
     </div>
+    <input type="hidden" value="" name="CustID"/>
+    <input type="hidden" value="<?php echo $userID ?>" name="UserID"/>
+    <input type="text" value="" name="CarID"/>
     <div class="modal-body form" >
       <form action="#" id="form" class="form-horizontal">
           <label class="control-label col-md-3">Name</label>
