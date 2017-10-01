@@ -29,6 +29,7 @@ class NeworderController extends CI_Controller {
 			$orderdata = array(
 					'Customer_id' => $this->input->post('customerid'),
 					'Car_id' => $this->input->post('CarID'),
+					'OrderDate' =>  "now()",
 				);
 			if($this->input->post('paymentmode')=="Down Payment"){
 			$orderdetailsdata = array(
