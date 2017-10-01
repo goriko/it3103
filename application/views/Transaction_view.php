@@ -34,6 +34,7 @@ $user=$this->session->userdata['logged_in']['fname'];
           <th>Order ID</th>
           <th>Car</th>
           <th>Order Date</th>
+          <th>Status</th>
           <th></th>
         </tr>
       </thead>
@@ -43,6 +44,11 @@ $user=$this->session->userdata['logged_in']['fname'];
             <td><?php echo $t->Order_ID;?></td>
             <td><?php echo $t->variant;$t->name;?></td>
             <td><?php echo $t->OrderDate;?></td>
+            <td><?php if($t->MonthsToPay == 0){
+              echo "Fully Paid";
+            }else{
+              echo "On Going";
+            }?></td>
             <td><button class='btn btn-success' onclick="ShowDetails(<?php echo $t->Order_ID?>)">View order details</button></td>
           </tr>
           <?php }?>
@@ -94,27 +100,6 @@ $user=$this->session->userdata['logged_in']['fname'];
 
       });
     }
-    function pay()
-    {
-       // ajax adding data to database
-          $.ajax({
-            url : "<?php echo site_url('/Transaction_controller/UpdatePayment')?>",
-            type: "POST",
-            data: $('#form').serialize(),
-            dataType: "JSON",
-            success: function(data)
-            {
-               //if success close modal and reload ajax table
-               $('#modal_form').modal('hide');
-              location.reload();// for reload a page
-            },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-                alert('Error adding / update data');
-            }
-        });
-    }
-
 
   </script>
 
@@ -128,7 +113,7 @@ $user=$this->session->userdata['logged_in']['fname'];
       </div>
       <div class="modal-body form">
       <form action="#" id="form" class="form-horizontal">
-       <input type="text" name="OrderID" value="">
+       <input type="hidden" name="OrderID" value="">
        <input type="hidden" name="bal" value="">
             <table id="table_id" class="table table-striped table-bordered" cellspacing="0" width="100%">
       <tbody>
@@ -150,13 +135,8 @@ $user=$this->session->userdata['logged_in']['fname'];
         </tr>
       </tbody>
       </table>
-      <div id="Payment">
-      <label>Enter Payment</label>
-        <input type="text" name="payments" class="form form-control" id="payment" required="required">
-      </div>
           </div>
           <div class="modal-footer">
-            <button type='button' class="btn btn-primary" onclick="pay()" id="paybtn">Save Payment</button>
             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
           </div>
         </div><!-- /.modal-content -->

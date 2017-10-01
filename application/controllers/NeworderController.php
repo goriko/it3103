@@ -26,10 +26,11 @@ class NeworderController extends CI_Controller {
 		}
 		public function order_add()
 		{
+			$date = date("y-m-d");
 			$orderdata = array(
 					'Customer_id' => $this->input->post('customerid'),
 					'Car_id' => $this->input->post('CarID'),
-					'OrderDate' =>  "now()",
+					'OrderDate' =>  $date,
 				);
 			if($this->input->post('paymentmode')=="Down Payment"){
 			$orderdetailsdata = array(

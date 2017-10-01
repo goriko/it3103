@@ -3,7 +3,7 @@
 		Public function __construct(){
 			parent:: __construct();
 			$this->load->model('Transaction_model');
-			
+
 		}
 		Public function index(){
 			$transaction_id = $this->uri->segment(3);
@@ -13,14 +13,6 @@
 		Public function Get_orderdetails($id){
 			$OrderDetails = $this->Transaction_model->get_Detail($id);
 			echo json_encode($OrderDetails);
-		}
-		Public function UpdatePayment(){
-			$Payment = array(
-				'balance' => $this->input->post('bal') - $this->input->post('payments'),
-			);
-
-		$this->Transaction_model->payment_update(array('Order_ID' => $this->input->post('OrderID')), $Payment);
-		echo json_encode(array("status" => TRUE));
 		}
 	}
 ?>

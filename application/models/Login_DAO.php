@@ -56,6 +56,28 @@ public function read_user_information($username) {
 	}
 }
 
+function checkPayment(){
+	$this->db->select('orders.Order_ID AS order_id, MonthsToPay, DAY(OrderDate) AS date, OrderDate');
+	$this->db->from('orders');
+	$this->db->join('order_details', 'order_details.Order_ID = orders.Order_ID');
+	$query = $this->db->get();
+	$data = $query->result();
+	$date = date("Y-m-d");
+	$day = date("d");
+	foreach($data as $a){
+		if($date != $a->OrderDate){
+			if($a->MonthsToPay != 0){
+				if($a->date == $day){
+					$a->MonthsToPay--;
+					$this->db->set('MonthsToPay', $a->MonthsToPay); //value that used to update column
+					$this->db->where('Order_ID', $a->order_id); //which row want to upgrade
+					$this->db->update('order_details');  //table name
+				}
+			}
+		}
+	}
+}
+
 }
 
 ?>

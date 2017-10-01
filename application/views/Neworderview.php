@@ -58,16 +58,16 @@ foreach($car as $c){
             <option value="24">24 mos.</option>
           </select>
           </span><br><br>
-          <label>Down Payment</label> 
+          <label>Down Payment</label>
           <input type="text" name='Downamount' value = "<?php echo $Cardown; ?>" readonly><br><br>
-        </div> 
+        </div>
         <div id="Full">
           <label>Full Payment</label>
           <input type="text" name="FullAmount" value="<?php echo $FullPayment?>" readonly><br><br>
         </div>
-       
-          
-      
+
+
+
 
         <button class="btn btn-primary">Buy!</button><br><br>
 
@@ -107,7 +107,7 @@ function NewCust(id){
                //if success close modal and reload ajax table
                $('#modal_form').modal('hide');
               location.reload();// for reload a page
-              
+
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
@@ -137,7 +137,7 @@ function NewCust(id){
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h3 class="modal-title">Car Form</h3>
+        <h3 class="modal-title">Customer Form</h3>
       </div>
       <div class="modal-body form" >
         <form action="#" id="form" class="form-horizontal">
@@ -173,7 +173,7 @@ function NewCust(id){
               </div>
             </div>
 
-            
+
           </div>
         </form>
           </div>

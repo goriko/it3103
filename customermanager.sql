@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 20, 2017 at 03:59 AM
+-- Generation Time: Oct 01, 2017 at 03:58 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -47,8 +47,8 @@ CREATE TABLE `car` (
 --
 
 INSERT INTO `car` (`unit_id`, `name`, `variant`, `transmission`, `price`, `horse_power`, `fuel`, `displacement`, `wheel_size`, `engine_spec`, `max_capacity`, `stock`, `downpayment`) VALUES
-(1, 'Carens', '1.7 LX CRDI', 'Automatic', '1195000', 141, 'Diesel', 1685, 16, 'U2 1.7 Diesel', 5, 0, 250000),
-(2, 'Carens', '1.7 EX CRDI', 'Automatic', '1525000', 141, 'Diesel', 1685, 16, 'U2 1.7 Diesel', 5, 88, 250000),
+(1, 'Carens', '1.7 LX CRDI', 'Automatic', '1195000', 141, 'Diesel', 1685, 16, 'U2 1.7 Diesel', 5, 10, 250000),
+(2, 'Carens', '1.7 EX CRDI', 'Automatic', '1525000', 141, 'Diesel', 1685, 16, 'U2 1.7 Diesel', 5, 56, 250000),
 (3, 'Carens', '1.7 EX CRDI', 'Automatic', '1270000', 141, 'Diesel', 1685, 16, 'U2 1.7 Diesel', 7, 96, 250000),
 (5, 'Carens', '1.7 LX CRDI', 'Manual', '1095000', 141, 'Diesel', 1685, 16, 'U2 1.7 Diesel', 5, 97, 220000),
 (6, 'Carens', '1.7 EX CRDI', 'Manual', '1425000', 141, 'Diesel', 1685, 16, 'U2 1.7 Diesel', 5, 96, 220000),
@@ -84,7 +84,11 @@ INSERT INTO `car` (`unit_id`, `name`, `variant`, `transmission`, `price`, `horse
 (36, 'Sorento', 'Si 2.2L', 'Manual', '2000000', 147, 'Diesel', 2199, 17, 'In-line 4 cyl. E-VGT3 CRDi4 16 valve', 7, 99, 250000),
 (37, 'Sportage', 'Si 2.0L EX 4x2', 'Automatic', '1445000', 114, 'Petrol', 1999, 17, 'In-line 4 cyl. DOHC MPI1 D-CVVT2 16 valve', 7, 99, 135000),
 (38, 'Sportage', 'Si 2.0L EX 4x2', 'Manual', '1345000', 114, 'Petrol', 1999, 17, 'In-line 4 cyl. DOHC MPI1 D-CVVT2 16 valve', 7, 99, 130000),
-(39, 'Sportage', 'Si 2.0L EX 4x4', 'Automatic', '1595000', 136, 'Diesel', 1995, 17, 'In-line 4 cyl. DOHC MPI1 D-CVVT2 16 valve', 7, 99, 138000);
+(39, 'Sportage', 'Si 2.0L EX 4x4', 'Automatic', '1595000', 136, 'Diesel', 1995, 17, 'In-line 4 cyl. DOHC MPI1 D-CVVT2 16 valve', 7, 99, 138000),
+(40, 'asd', 'asd', 'sad', '12', 213, 'as', 123, 213, 'das', 321, 132321, 1232132132),
+(41, 'asdas', 'dasd', 'manual', '1234', 123, '123', 123, 412, '312', 123, 12312, 12534623),
+(42, '1', '1', 'automatic', '1', 1, '1', 11, 1, '1', 1, 1, 1),
+(43, 'asd', '12', 'automatic', '12', 121, '21212', 121212, 12, '1121', 1211, 12, 12);
 
 -- --------------------------------------------------------
 
@@ -106,8 +110,10 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`CustomerID`, `Name`, `CivilStatus`, `Address`, `ContactNumber`, `emp`) VALUES
-(1, 'goriii', 'ye', 'qwerasdzx', 12345, 1),
-(2, 'gail', 'way ayo', 'balay sa iya mama', 999, 2);
+(1, 'goriii', 'yea', 'qwerasdzx', 12345, 1),
+(2, 'gail', 'way ayo', 'balay sa iya mama', 92222221, 2),
+(17, 'dar', 'Single', 'dr', 1234567, 2),
+(18, 'darru', 'Single', 'dasd', 12345, 2);
 
 -- --------------------------------------------------------
 
@@ -116,9 +122,9 @@ INSERT INTO `customers` (`CustomerID`, `Name`, `CivilStatus`, `Address`, `Contac
 --
 
 CREATE TABLE `orders` (
-  `Order_ID` int(11) NOT NULL,
+  `Order_ID` int(100) NOT NULL,
   `Customer_id` int(11) NOT NULL,
-  `Car` int(11) NOT NULL,
+  `Car_id` int(11) NOT NULL,
   `OrderDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -126,9 +132,14 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`Order_ID`, `Customer_id`, `Car`, `OrderDate`) VALUES
-(5, 1, 3, '2017-09-06'),
-(6, 2, 4, '2017-09-14');
+INSERT INTO `orders` (`Order_ID`, `Customer_id`, `Car_id`, `OrderDate`) VALUES
+(16, 1, 1, '0000-00-00'),
+(17, 18, 1, '0000-00-00'),
+(20, 2, 1, '0000-00-00'),
+(21, 2, 1, '0000-00-00'),
+(28, 2, 1, '0000-00-00'),
+(29, 17, 1, '0000-00-00'),
+(30, 18, 1, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -143,6 +154,19 @@ CREATE TABLE `order_details` (
   `balance` int(11) NOT NULL,
   `MonthsToPay` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `order_details`
+--
+
+INSERT INTO `order_details` (`Order_ID`, `ordertype`, `term`, `balance`, `MonthsToPay`) VALUES
+(16, 'Full Payment', 0, 0, 0),
+(17, 'Full Payment', 0, 0, 0),
+(20, 'Full Payment', 0, 0, 0),
+(21, 'Full Payment', 0, 0, 0),
+(28, 'Down Payment', 12, 710000, 12),
+(29, 'Full Payment', 0, 0, 0),
+(30, 'Full Payment', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -164,7 +188,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`UserID`, `Fname`, `Lname`, `Username`, `Password`) VALUES
 (1, 'Edrian', 'Guanzon', 'gorii', '1234'),
-(2, 'daryl', 'rabanos', 'dar', '12345');
+(2, 'daryl', 'rabanos', 'dar', '12345'),
+(3, 'das', 'dasd', 'asdasd', '12345'),
+(4, 'stella', 'salazar', 'ste', 'lla');
 
 --
 -- Indexes for dumped tables
@@ -186,10 +212,12 @@ ALTER TABLE `customers`
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
+  ADD PRIMARY KEY (`Order_ID`),
   ADD KEY `Customer_id` (`Customer_id`),
   ADD KEY `Order_ID` (`Order_ID`),
   ADD KEY `Customer_id_2` (`Customer_id`),
-  ADD KEY `Order_ID_2` (`Order_ID`);
+  ADD KEY `Order_ID_2` (`Order_ID`),
+  ADD KEY `Car_id` (`Car_id`);
 
 --
 -- Indexes for table `order_details`
@@ -211,22 +239,27 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `car`
 --
 ALTER TABLE `car`
-  MODIFY `unit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `unit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `CustomerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `CustomerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `Order_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `Order_ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+--
+-- AUTO_INCREMENT for table `order_details`
+--
+ALTER TABLE `order_details`
+  MODIFY `Order_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -9,6 +9,7 @@
 
 		// Show login page
 		public function index() {
+			$this->Login_DAO->checkPayment();
 			$this->load->view('Login_form');
 		}
 

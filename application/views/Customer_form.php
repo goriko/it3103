@@ -48,7 +48,7 @@ $user=$this->session->userdata['logged_in']['fname'];
           <td><?php echo $cust->CivilStatus;?></td>
             <td><?php echo $cust->Address;?></td>
             <td><?php echo $cust->ContactNumber;?></td>
-            <td><button class="btn btn-success" onclick="edit_customer(<?php echo $cust->CustomerID;?>)">Edit</button> 
+            <td><button class="btn btn-success" onclick="edit_customer(<?php echo $cust->CustomerID;?>)">Edit</button>
             <a href="<?php echo base_url("index.php/Transaction_controller/index/".$cust->CustomerID);?>"><button class='btn btn-warning'>Transaction</button></a></td>
           </tr>
           <?php }?>
