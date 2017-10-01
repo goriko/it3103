@@ -3,7 +3,7 @@
 
 		function getCarinfo($id){
 			$condition = "unit_id =" . "'" . $id . "'";
-			$this->db->select('unit_id,name, variant,price');
+			$this->db->select('unit_id,name, variant,price,stock');
 			$this->db->from('car');
 			$this->db->where($condition);
 			$query = $this->db->get();

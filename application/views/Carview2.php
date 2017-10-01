@@ -181,14 +181,9 @@
             dataType: "JSON",
             success: function(data)
             {
-              if(save_method == 'add'){
                //if success close modal and reload ajax table
                $('#modal_form').modal('hide');
               location.reload();// for reload a page
-              }else{
-                $('#modal_stock').modal('hide');
-              location.reload();// for reload a page
-              }
             },
             error: function (jqXHR, textStatus, errorThrown)
             {

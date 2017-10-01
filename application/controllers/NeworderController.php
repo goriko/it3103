@@ -5,6 +5,7 @@ class NeworderController extends CI_Controller {
 	 	{
 	 		parent::__construct();
 	 		$this->load->model('NeworderModel');
+	 		$this->load->model('Carmodel2');
 	 	}
 		function addOrder($id){
 			$data['car'] = $this->NeworderModel->getCarinfo($id);
@@ -29,19 +30,24 @@ class NeworderController extends CI_Controller {
 					'Customer_id' => $this->input->post('customerid'),
 					'Car_id' => $this->input->post('CarID'),
 				);
-			if($this->input->post('paymentmode')=="down"){
+			if($this->input->post('paymentmode')=="Down Payment"){
 			$orderdetailsdata = array(
 					'ordertype' => $this->input->post('paymentmode'),
 					'term' => $this->input->post('term'),
 					'balance' => $this->input->post('FullAmount') - $this->input->post('Downamount'),
+					'MonthsToPay' =>$this->input->post('term'),
 				);
 		}else{
 			$orderdetailsdata = array(
 					'ordertype' => $this->input->post('paymentmode'),
-					);
+				);
 		}
-			$insert = $this->NeworderModel->order_add($orderdata);
-			$insert = $this->NeworderModel->orderdetails_add($orderdetailsdata);
+			$subtract_stock = array(
+				'stock' => $this->input->post('Stock') - 1,
+			);
+		    $this->Carmodel2->car_update(array('unit_id' => $this->input->post('CarID')), $subtract_stock);
+			$this->NeworderModel->order_add($orderdata);
+			$this->NeworderModel->orderdetails_add($orderdetailsdata);
 			redirect('Carcontroller2','refresh');
 		}
 	}

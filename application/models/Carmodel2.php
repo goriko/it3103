@@ -30,13 +30,13 @@ class Carmodel2 extends CI_Model
 		return $query->row();
 	}
 
-	public function book_add($data)
+	public function car_add($data)
 	{
 		$this->db->insert($this->table, $data);
 		return $this->db->insert_id();
 	}
 
-	public function book_update($where, $data)
+	public function car_update($where, $data)
 	{
 		$this->db->update($this->table, $data, $where);
 		return $this->db->affected_rows();

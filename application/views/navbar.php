@@ -1,4 +1,6 @@
 <link  rel="stylesheet" href="<?php echo base_url('assests/bootstrap/css/bootstrap.min.css')?>">
+<link rel ="stylesheet" href="<?php echo base_url("assests/bootstrap/css/font-awesome.min.css"); ?>">
+<link rel ="stylesheet" href="<?php echo base_url("assests/bootstrap/css/font-awesome.css"); ?>">
 	<div class="row">
 		<div class="topbar">
  			<div class="col-md-1">

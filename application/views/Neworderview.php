@@ -5,6 +5,7 @@ foreach($car as $c){
       $Carid = $c->unit_id;
       $Cardown = $c->price*0.4;
       $FullPayment = $c->price;
+      $stock = $c->stock;
       }
 ?>
 <html>
@@ -30,6 +31,7 @@ foreach($car as $c){
     </h1>
       <?php echo form_open('NeworderController/order_add');?>
       <input type="hidden" value="<?php echo $Carid;?>" name="CarID"/>
+      <input type="hidden" value="<?php echo $stock;?>" name="Stock"/>
 
         <label>Customer Name</label>
         <select name="customerid" class="infoput">
@@ -43,8 +45,8 @@ foreach($car as $c){
         <label>Mode of Payment</label>
         <span>
           <select id="Paymentmode" name="paymentmode" class="infoput">
-            <option value="down">Downpayment</option>
-            <option value="full">Full Payment</option>
+            <option value="Down Payment">Downpayment</option>
+            <option value="Full Payment">Full Payment</option>
           </select>
         </span><br><br>
 
@@ -114,7 +116,8 @@ function NewCust(id){
         });
     }
     $("#Paymentmode").on('change', function() {
-    if ($(this).val() == 'down'){
+      console.log($("#Paymentmode").val());
+    if ($(this).val() == 'Down Payment'){
         $("#selectMode").show();
         $("#Full").hide();
         $("#paymentt").val("12");
@@ -169,6 +172,7 @@ function NewCust(id){
                 <input name="contact" placeholder="Contact Number" class="form-control" type="text" required="required">
               </div>
             </div>
+
             
           </div>
         </form>

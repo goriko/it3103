@@ -63,7 +63,7 @@ $user=$this->session->userdata['logged_in']['fname'];
 
     function ShowDetails(id)
     {
-
+      $('#payment').val('');
       $('#OrderType').html('');
       $('#Term').html('');
       $('#balance').html('');
@@ -76,14 +76,41 @@ $user=$this->session->userdata['logged_in']['fname'];
         dataType: "JSON",
         success: function(data)
         {
+          $('#OrderID').val(data.Order_ID);
           $('#OrderType').html(data.ordertype);
           $('#Term').html(data.term);
           $('#balance').html(data.balance);
           $('#Months').html(data.MonthsToPay);
-
+          if($('#OrderType').html() != "Down Payment" || $('#balance').html() == 0){
+            $('#Payment').hide();
+            $('#paybtn').hide();
+          }else{
+            $('#Payment').show();
+            $('#paybtn').show();
+          }
           $('#modal_form').modal('show');
         }
       });
+    }
+    function pay(){
+      
+       // ajax adding data to database
+          $.ajax({
+            url : "Transaction_controller/UpdatePayment",
+            type: "POST",
+            data: $('#form').serialize(),
+            dataType: "JSON",
+            success: function(data)
+            {
+              
+               $('#modal_form').modal('hide');
+              location.reload();// for reload a page
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                alert('Error update data');
+            }
+        });
     }
 
   </script>
@@ -97,6 +124,7 @@ $user=$this->session->userdata['logged_in']['fname'];
         <h3 class="modal-title">Order Details</h3>
       </div>
       <div class="modal-body">
+      <input type="hidden" name="OrderID" value="">
             <table id="table_id" class="table table-striped table-bordered" cellspacing="0" width="100%">
       <tbody>
         <tr>
@@ -109,7 +137,7 @@ $user=$this->session->userdata['logged_in']['fname'];
         </tr>
         <tr>
             <td>Balance</td>
-            <td id="balance"></td>
+            <td id="balance" name="balance"></td>
         </tr>
         <tr>
             <td>Months To Pay</td>
@@ -117,8 +145,13 @@ $user=$this->session->userdata['logged_in']['fname'];
         </tr>
       </tbody>
       </table>
+      <div id="Payment">
+      <label>Enter Payment</label>
+        <input type="text" name="payment" class="form form-control" id="payment" required="required">
+      </div>
           </div>
           <div class="modal-footer">
+            <button type='button' class="btn btn-primary" onclick="pay()" id="paybtn">Save Payment</button>
             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
           </div>
         </div><!-- /.modal-content -->

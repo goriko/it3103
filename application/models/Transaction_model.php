@@ -18,5 +18,10 @@
 			$query = $this->db->get();
 			return $query->row();
 		}
+		public function payment_update($where, $data)
+		{
+			$this->db->update('order_detailssasdsd', $data, $where);
+			return $this->db->affected_rows();	
+		}
 	}
 ?>

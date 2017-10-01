@@ -33,7 +33,7 @@ class Carcontroller2 extends CI_Controller {
 					'stock' => $this->input->post('stock'),
 					'downpayment' => $this->input->post('downpayment'),
 				);
-			$insert = $this->Carmodel2->book_add($data);
+			$insert = $this->Carmodel2->car_add($data);
 			echo json_encode(array("status" => TRUE));
 		}
 		public function ajax_edit($id)
@@ -47,7 +47,7 @@ class Carcontroller2 extends CI_Controller {
 		$data = array(
 				'stock' => $this->input->post('stock'),
 			);
-		$this->Carmodel2->book_update(array('unit_id' => $this->input->post('unitid')), $data);
+		$this->Carmodel2->car_update(array('unit_id' => $this->input->post('unitid')), $data);
 		echo json_encode(array("status" => TRUE));
 
 	}
