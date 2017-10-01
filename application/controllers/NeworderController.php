@@ -29,10 +29,17 @@ class NeworderController extends CI_Controller {
 					'Customer_id' => $this->input->post('customerid'),
 					'Car_id' => $this->input->post('CarID'),
 				);
+			if($this->input->post('paymentmode')=="down"){
 			$orderdetailsdata = array(
 					'ordertype' => $this->input->post('paymentmode'),
 					'term' => $this->input->post('term'),
+					'balance' => $this->input->post('FullAmount') - $this->input->post('Downamount'),
 				);
+		}else{
+			$orderdetailsdata = array(
+					'ordertype' => $this->input->post('paymentmode'),
+					);
+		}
 			$insert = $this->NeworderModel->order_add($orderdata);
 			$insert = $this->NeworderModel->orderdetails_add($orderdetailsdata);
 			redirect('Carcontroller2','refresh');

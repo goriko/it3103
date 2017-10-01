@@ -2,7 +2,9 @@
 $user=$this->session->userdata['logged_in']['fname'];
 $userID=$this->session->userdata['logged_in']['id'];
 foreach($car as $c){
-      $Carid=$c->unit_id;
+      $Carid = $c->unit_id;
+      $Cardown = $c->price*0.4;
+      $FullPayment = $c->price;
       }
 ?>
 <html>
@@ -29,7 +31,7 @@ foreach($car as $c){
       <?php echo form_open('NeworderController/order_add');?>
       <input type="hidden" value="<?php echo $Carid;?>" name="CarID"/>
 
-        <span>Customer Name</span>
+        <label>Customer Name</label>
         <select name="customerid" class="infoput">
           <?php
             foreach($cust as $a){
@@ -38,25 +40,34 @@ foreach($car as $c){
           ?>
         </select><br><br>
 
-        <span>Mode of Payment</span>
+        <label>Mode of Payment</label>
         <span>
-          <select name="paymentmode" class="infoput">
+          <select id="Paymentmode" name="paymentmode" class="infoput">
             <option value="down">Downpayment</option>
             <option value="full">Full Payment</option>
           </select>
         </span><br><br>
 
-        <div id="downamount">
-          <span>Select terms:</span>
+        <div id="selectMode">
+          <label>Select terms:</label>
           <span>
           <select id="paymentt" name="term" class="infoput">
             <option value="12">12 mos.</option>
             <option value="24">24 mos.</option>
           </select>
           </span><br><br>
+          <label>Down Payment</label> 
+          <input type="text" name='Downamount' value = "<?php echo $Cardown; ?>" readonly><br><br>
+        </div> 
+        <div id="Full">
+          <label>Full Payment</label>
+          <input type="text" name="FullAmount" value="<?php echo $FullPayment?>" readonly><br><br>
         </div>
+       
+          
+      
 
-        <button class="btn btn-primary" onclick="Addorder()">Buy!</button>
+        <button class="btn btn-primary">Buy!</button><br><br>
 
       </form>
       </center>
@@ -71,12 +82,14 @@ foreach($car as $c){
 
 
 <script type="text/javascript">
+$("#Full").hide()
 
-$(document).ready( function(){
-});
 function NewCust(id){
           $('[name="CarID"]').val(id);
-          $('#form')[0].reset();
+          $('[name="name"]').val("");
+          $('[name="civilstatus"]').val("Single");
+          $('[name="address"]').val("");
+          $('[name="contact"]').val("");
           $('#modal_form').modal('show');
         }
         function save()
@@ -100,11 +113,22 @@ function NewCust(id){
             }
         });
     }
+    $("#Paymentmode").on('change', function() {
+    if ($(this).val() == 'down'){
+        $("#selectMode").show();
+        $("#Full").hide();
+        $("#paymentt").val("12");
+    } else {
+        $("#selectMode").hide();
+        $("#Full").show();
+        $("#paymentt").val("0");
+    }
+});
 
 
   </script>
 
-  <!-- Bootstrap modal -->
+   <!-- Bootstrap modal -->
   <div class="modal fade" id="modal_form" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
