@@ -16,8 +16,9 @@
 		}
 		Public function UpdatePayment(){
 			$Payment = array(
-				'balance' => $this->input->post('balance') - $this->input->post('payment'),
+				'balance' => $this->input->post('bal') - $this->input->post('payments'),
 			);
+
 		$this->Transaction_model->payment_update(array('Order_ID' => $this->input->post('OrderID')), $Payment);
 		echo json_encode(array("status" => TRUE));
 		}

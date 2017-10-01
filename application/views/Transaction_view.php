@@ -63,7 +63,6 @@ $user=$this->session->userdata['logged_in']['fname'];
 
     function ShowDetails(id)
     {
-      $('#payment').val('');
       $('#OrderType').html('');
       $('#Term').html('');
       $('#balance').html('');
@@ -76,7 +75,8 @@ $user=$this->session->userdata['logged_in']['fname'];
         dataType: "JSON",
         success: function(data)
         {
-          $('#OrderID').val(data.Order_ID);
+          $('[name="bal"]').val(data.balance);
+          $('[name="OrderID"]').val(data.Order_ID);
           $('#OrderType').html(data.ordertype);
           $('#Term').html(data.term);
           $('#balance').html(data.balance);
@@ -89,29 +89,32 @@ $user=$this->session->userdata['logged_in']['fname'];
             $('#paybtn').show();
           }
           $('#modal_form').modal('show');
+
         }
+
       });
     }
-    function pay(){
-      
+    function pay()
+    {
        // ajax adding data to database
           $.ajax({
-            url : "Transaction_controller/UpdatePayment",
+            url : "<?php echo site_url('/Transaction_controller/UpdatePayment')?>",
             type: "POST",
             data: $('#form').serialize(),
             dataType: "JSON",
             success: function(data)
             {
-              
+               //if success close modal and reload ajax table
                $('#modal_form').modal('hide');
               location.reload();// for reload a page
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
-                alert('Error update data');
+                alert('Error adding / update data');
             }
         });
     }
+
 
   </script>
 
@@ -123,8 +126,10 @@ $user=$this->session->userdata['logged_in']['fname'];
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h3 class="modal-title">Order Details</h3>
       </div>
-      <div class="modal-body">
-      <input type="hidden" name="OrderID" value="">
+      <div class="modal-body form">
+      <form action="#" id="form" class="form-horizontal">
+       <input type="text" name="OrderID" value="">
+       <input type="hidden" name="bal" value="">
             <table id="table_id" class="table table-striped table-bordered" cellspacing="0" width="100%">
       <tbody>
         <tr>
@@ -137,7 +142,7 @@ $user=$this->session->userdata['logged_in']['fname'];
         </tr>
         <tr>
             <td>Balance</td>
-            <td id="balance" name="balance"></td>
+            <td id="balance"></td>
         </tr>
         <tr>
             <td>Months To Pay</td>
@@ -147,7 +152,7 @@ $user=$this->session->userdata['logged_in']['fname'];
       </table>
       <div id="Payment">
       <label>Enter Payment</label>
-        <input type="text" name="payment" class="form form-control" id="payment" required="required">
+        <input type="text" name="payments" class="form form-control" id="payment" required="required">
       </div>
           </div>
           <div class="modal-footer">

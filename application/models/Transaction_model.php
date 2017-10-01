@@ -20,7 +20,7 @@
 		}
 		public function payment_update($where, $data)
 		{
-			$this->db->update('order_detailssasdsd', $data, $where);
+			$this->db->update('order_details', $data, $where);
 			return $this->db->affected_rows();	
 		}
 	}
