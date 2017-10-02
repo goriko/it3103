@@ -14,5 +14,14 @@
 			$OrderDetails = $this->Transaction_model->get_Detail($id);
 			echo json_encode($OrderDetails);
 		}
+		Public function AdvancePay()
+		{
+			$data = array(
+					'balance' => $this->input->post('bal') - $this->input->post('payment'),
+					'MonthsToPay' => $this->input->post('month') - floor($this->input->post('payment')/$this->input->post('monthly')),
+				);
+			$this->Transaction_model->AdvancePay(array('Order_ID' => $this->input->post('OrderID')), $data);
+			echo json_encode(array("status" => TRUE));
+		}
 	}
 ?>

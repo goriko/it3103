@@ -83,10 +83,13 @@ $user=$this->session->userdata['logged_in']['fname'];
         {
           $('[name="bal"]').val(data.balance);
           $('[name="OrderID"]').val(data.Order_ID);
+          $('[name="month"]').val(data.MonthsToPay);
+          $('[name="monthly"]').val(data.MonthlyPayment);
           $('#OrderType').html(data.ordertype);
           $('#Term').html(data.term);
           $('#balance').html(data.balance);
           $('#Months').html(data.MonthsToPay);
+          $('#MonthsPay').html(data.MonthlyPayment);
           if($('#OrderType').html() != "Down Payment" || $('#balance').html() == 0){
             $('#Payment').hide();
             $('#paybtn').hide();
@@ -100,6 +103,27 @@ $user=$this->session->userdata['logged_in']['fname'];
 
       });
     }
+    function pay()
+    {
+       // ajax adding data to database
+          $.ajax({
+            url : "<?php echo site_url('/Transaction_controller/AdvancePay')?>",
+            type: "POST",
+            data: $('#form').serialize(),
+            dataType: "JSON",
+            success: function(data)
+            {
+               //if success close modal and reload ajax table
+               $('#modal_form').modal('hide');
+              location.reload();// for reload a page
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                alert('Error adding payment');
+            }
+        });
+    }
+
 
   </script>
 
@@ -115,6 +139,8 @@ $user=$this->session->userdata['logged_in']['fname'];
       <form action="#" id="form" class="form-horizontal">
        <input type="hidden" name="OrderID" value="">
        <input type="hidden" name="bal" value="">
+       <input type="hidden" name="month" value="">
+       <input type="hidden" name="monthly" value="">
             <table id="table_id" class="table table-striped table-bordered" cellspacing="0" width="100%">
       <tbody>
         <tr>
@@ -133,10 +159,19 @@ $user=$this->session->userdata['logged_in']['fname'];
             <td>Months To Pay</td>
             <td id="Months"></td>
         </tr>
+        <tr>
+            <td>Monthly Payment</td>
+            <td id="MonthsPay"></td>
+        </tr>
       </tbody>
       </table>
+      <div id="Payment">
+      <label>Payment</label>
+        <input type="text" name="payment"  class="form-control">
+        </div>
           </div>
           <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="pay()" id="paybtn">Save Payment</button>
             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
           </div>
         </div><!-- /.modal-content -->

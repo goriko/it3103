@@ -19,5 +19,10 @@
 			$query = $this->db->get();
 			return $query->row();
 		}
+		public function AdvancePay($where, $data)
+		{
+			$this->db->update('order_details', $data, $where);
+			return $this->db->affected_rows();
+		}
 	}
 ?>
