@@ -1,6 +1,6 @@
+
 <link  rel="stylesheet" href="<?php echo base_url('assests/bootstrap/css/bootstrap.min.css')?>">
-<link rel ="stylesheet" href="<?php echo base_url("assests/bootstrap/css/font-awesome.min.css"); ?>">
-<link rel ="stylesheet" href="<?php echo base_url("assests/bootstrap/css/font-awesome.css"); ?>">
+    <link href="<?php echo base_url('assests/bootstrap/css/logout.css')?>" rel="stylesheet" type="text/css">
 	<div class="row">
 		<div class="topbar">
  			<div class="col-md-1">
@@ -15,7 +15,7 @@
 	     		   	echo "class='link'";
 	     			}?>>
 	    		<div>
-      			<span><i class="glyphicon glyphicon-user icon">Customers</i></span>
+      			<span><i class="glyphicon glyphicon-user icon">&nbsp;Customers</i></span>
 	   	  	</div>
 	      </a>
 	     </div>
@@ -27,15 +27,15 @@
 	     	   		echo "class='link'";
 	     	 		}?>>
 	     	<div>
-	     		<span ><i class="fa fa-car icon">Cars</i></span>
+	     		<span ><i class="glyphicon glyphicon-road">&nbsp;Cars</i></span>
 	     	</div>
 	     </a>
 		 </div>
 
-	   <div class="topblock logout col-md-offset-11">
+	   <div class="topblock logout col-md-offset-5" id="logout">
 	   	<a href="<?php echo base_url("index.php/Logout_controller/logout");?>" class="linkout">
 	   		<div>
-	   			<span class="fa fa-sign-out"></span><span>Log Out</span>
+	   			<span class="glyphicon glyphicon-log-out"></span><span> Log Out</span>
 	     	</div>
 	    </a>
 	   </div>

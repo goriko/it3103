@@ -1,0 +1,19 @@
+.info{
+	padding: 5em;
+}
+ body{
+  padding: 2em;
+}
+ .wrapper{
+  margin-left: 4.5em;
+}
+ .imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+  img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+

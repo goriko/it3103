@@ -20,19 +20,21 @@
               <img src="<?php echo base_url("img/kialogin.png")?>" width= "500em" height= "300em">
           </div>
       </div>
-			<?php echo form_open('Login_controller/user_login_process');
-				echo "<div class='error_msg'>";
-				if (isset($error_message)){
- 					echo $error_message;
-				}
-				validation_errors();
-				echo "</div>";
-			?>
+			<?php echo form_open('Login_controller/user_login_process');?>
+
 			<form>
 				<div class="form-group col-md-offset-4 col-md-4">
 				<br>
 					<input type="text" class="form-control" required="required" name="username" id="name" placeholder="Username"/><br />
 					<input type="password" class="form-control" required="required" name="password" id="password" placeholder="**********"/><br/>
+					<?php
+						echo "<div class='error_msg'>";
+						if (isset($error_message)){
+		 					echo $error_message;
+						}
+						validation_errors();
+						echo "</div>";
+					?>
 					<button type="submit" value="Login" class="btn btn-primary">Login</button><br><br>
 					<a href="<?php echo base_url('index.php/Register_controller') ?>">Click here to register</a>
 					<?php echo form_close(); ?>

@@ -16,6 +16,7 @@
     <link rel ="stylesheet" href="<?php echo base_url("css/font-awesome.css"); ?>">
     <link rel ="stylesheet" href="<?php echo base_url("css/cars.css"); ?>">
     <link href="<?php echo base_url('assests/datatables/css/dataTables.bootstrap.css')?>" rel="stylesheet">
+    <link href="<?php echo base_url('assests/bootstrap/css/logout.css')?>" rel="stylesheet" type="text/css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -27,7 +28,7 @@
     <?php include('navbar.php');?>
     <br/>
     <div class="col-md-offset-1 col-md-10">
-      <h1>Cars</h1>
+      <center><h1>Cars</h1></center>
       <br />
       <button class="btn btn-success" onclick="add_car()"><i class="glyphicon glyphicon-plus"></i> Add Car</button>
       <br />

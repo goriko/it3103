@@ -11,7 +11,7 @@
 				'email' => '',
 			);
 			$this->session->unset_userdata('logged_in', $sess_array);
-			$this->load->view('login_form');
+			redirect('Login_controller','refresh');
 		}	
 }
 ?>
