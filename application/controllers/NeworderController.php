@@ -38,6 +38,7 @@ class NeworderController extends CI_Controller {
 					'term' => $this->input->post('term'),
 					'balance' => $this->input->post('FullAmount') - $this->input->post('Downamount'),
 					'MonthsToPay' =>$this->input->post('term'),
+					'MonthlyPayment' =>$this->input->post('FullAmount') / $this->input->post('term'),
 				);
 		}else{
 			$orderdetailsdata = array(

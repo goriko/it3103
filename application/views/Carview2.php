@@ -69,7 +69,8 @@
             <td><?php echo $c->stock;?></td>
             <td><?php echo $c->downpayment;?></td>
             <td><a href=<?php echo base_url('index.php/NeworderController/addOrder/'.$c->unit_id);?>><button class='btn btn-primary'>Order</button></a>
-            <button class="btn btn-success" onclick="edit_stock(<?php echo $c->unit_id;?>)">Update stock</button></td>
+            <button class="btn btn-success" onclick="edit_stock(<?php echo $c->unit_id;?>)">Update stock</button>
+            <button class="btn btn-danger glyphicon glyphicon-remove" onclick="delete_car(<?php echo $c->unit_id;?>)"></button></td>
           </tr>
           <?php }?>
       </tbody>
@@ -88,6 +89,8 @@
   } );
     var save_method; //for save method string
     var table;
+
+
 
 
     function add_car()
@@ -179,7 +182,6 @@
             url : url,
             type: "POST",
             data: $('#form').serialize(),
-            dataType: "JSON",
             success: function(data)
             {
                //if success close modal and reload ajax table
@@ -191,6 +193,23 @@
                 alert('Error adding / update data');
             }
         });
+    }
+
+    function delete_car(id){
+        if(confirm('Are you sure?')){
+          $.ajax({
+            url : "<?php echo site_url('/Carcontroller2/book_delete/')?>/" + id,
+            type: "GET",
+            dataType: "JSON",
+            success: function(data){
+              location.reload();
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                alert('Error adding / update data');
+            }
+          });
+        }
     }
 
 

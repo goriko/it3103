@@ -25,16 +25,18 @@ foreach($car as $c){
   <body>
     <?php include('navbar.php');?>
     <br/>
-    <h1><?php foreach($car as $t){
+    <div class='col-md-offset-3 col-md-6'>
+    <center><h1><?php foreach($car as $t){
       echo $t->name." ".$t->variant;
       }?>
     </h1>
+  </br>
       <?php echo form_open('NeworderController/order_add');?>
       <input type="hidden" value="<?php echo $Carid;?>" name="CarID"/>
       <input type="hidden" value="<?php echo $stock;?>" name="Stock"/>
 
         <label>Customer Name</label>
-        <select name="customerid" class="infoput">
+        <select name="customerid" class="infoput form-control">
           <?php
             foreach($cust as $a){
               echo"<option value=".$a->CustomerID.">".$a->Name."</option>";
@@ -44,7 +46,7 @@ foreach($car as $c){
 
         <label>Mode of Payment</label>
         <span>
-          <select id="Paymentmode" name="paymentmode" class="infoput">
+          <select id="Paymentmode" name="paymentmode" class="infoput form-control">
             <option value="Down Payment">Downpayment</option>
             <option value="Full Payment">Full Payment</option>
           </select>
@@ -53,27 +55,28 @@ foreach($car as $c){
         <div id="selectMode">
           <label>Select terms:</label>
           <span>
-          <select id="paymentt" name="term" class="infoput">
+          <select id="paymentt" name="term" class="infoput form-control">
             <option value="12">12 mos.</option>
             <option value="24">24 mos.</option>
           </select>
           </span><br><br>
+          <div>
           <label>Down Payment</label>
-          <input type="text" name='Downamount' value = "<?php echo $Cardown; ?>" readonly><br><br>
+          <input type="text" class='form-control' style='width:35%' name='Downamount' value = "<?php echo $Cardown; ?>" readonly><br><br>
         </div>
         <div id="Full">
           <label>Full Payment</label>
-          <input type="text" name="FullAmount" value="<?php echo $FullPayment?>" readonly><br><br>
+          <input type="text" class='form-control' name="FullAmount" value="<?php echo $FullPayment?>" readonly><br><br>
         </div>
-
-
+      </div>
 
 
         <button class="btn btn-primary">Buy!</button><br><br>
 
       </form>
-      </center>
       <span>If customer doesnt have a record yet, please click <a href='#' id='link' onclick="NewCust(<?php echo $Carid ?>)">here</a></span><br/>
+      </center>
+      </div>
   </body>
 </html>
 

@@ -1,4 +1,4 @@
-<?php
+ <?php
 	Class Register_controller extends CI_Controller{
 		public function __construct() {
 			parent::__construct();
@@ -24,10 +24,10 @@
 				$this->load->model('Register_DAO');
 				$result = $this->Register_DAO->Register($data);
 				if ($result == TRUE) {
-					$data['message_display'] = 'Registration Successfully !';
+					$data['message_display'] = 'Registration Successful!';
 					$this->load->view('login_form', $data);
 				} else {
-					$data['message_display'] = 'Username already exist!';
+					$data['message_display'] = 'Username already exists!';
 					$this->load->view('registration_form', $data);
 				}
 			}

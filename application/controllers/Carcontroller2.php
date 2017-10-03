@@ -1,5 +1,4 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Carcontroller2 extends CI_Controller {
 
@@ -53,7 +52,7 @@ class Carcontroller2 extends CI_Controller {
 
 	public function book_delete($id)
 	{
-		$this->book_model->delete_by_id($id);
+		$this->Carmodel2->delete_by_id($id);
 		echo json_encode(array("status" => TRUE));
 	}
 

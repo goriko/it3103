@@ -129,7 +129,7 @@ $user=$this->session->userdata['logged_in']['fname'];
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h3 class="modal-title">Car Form</h3>
+        <h3>Customer Information Form<h3>
       </div>
       <div class="modal-body form">
         <form action="#" id="form" class="form-horizontal">
@@ -144,8 +144,12 @@ $user=$this->session->userdata['logged_in']['fname'];
             <div class="form-group">
               <label class="control-label col-md-3">Civil Status</label>
               <div class="col-md-9">
-                <input name="civilstatus" class="form-control" type="text" required="required">
-              </div>
+                <select name='civilstatus' class='form-control'>
+                  <option value="Single">Single</option>
+                  <option value="Married">Married</option>
+                  <option value="Widowed">Widowed</option>
+                </select>
+              </br>
             </div>
             <div class="form-group">
               <label class="control-label col-md-3">Address</label>

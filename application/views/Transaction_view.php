@@ -25,7 +25,7 @@ $user=$this->session->userdata['logged_in']['fname'];
     <?php include('navbar.php');?>
     <br/>
     <div class="col-md-offset-1 col-md-10">
-      <center><h1>Customers</h1></center>
+      <center><h1>Customer Transaction</h1></center>
       <br />
       <br />
       <table id="table_id" class="table table-striped table-bordered" cellspacing="0" width="100%">

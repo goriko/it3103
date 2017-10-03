@@ -1,5 +1,7 @@
 
 <link  rel="stylesheet" href="<?php echo base_url('assests/bootstrap/css/bootstrap.min.css')?>">
+<link  rel="stylesheet" href="<?php echo base_url('assests/bootstrap/css/font-awesome.min.css')?>">
+<link  rel="stylesheet" href="<?php echo base_url('assests/bootstrap/css/font-awesome.css')?>">
     <link href="<?php echo base_url('assests/bootstrap/css/logout.css')?>" rel="stylesheet" type="text/css">
 	<div class="row">
 		<div class="topbar">
@@ -27,7 +29,7 @@
 	     	   		echo "class='link'";
 	     	 		}?>>
 	     	<div>
-	     		<span ><i class="glyphicon glyphicon-road">&nbsp;Cars</i></span>
+	     		<span ><i class="fa fa-car">&nbsp;Cars</i></span>
 	     	</div>
 	     </a>
 		 </div>
